@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		
+		<script type="text/javascript">
+			console.log('1000'<'2');	//字符串比较大小只比较第一个的编码大小
+			
+			var str='我们的事业并不显赫，但将永远存在！';
+			console.log(str.substring(5));	//一个数是，直接从数字开始截取
+			alert(str.substring(2,0));		//可以检测两个数，大的往后，小的往前
+		//	alert(str.slice(2,0));		不会交换数的位置
+			console.log(str.substring());	//什么都没有，默认为0开始；
+			alert(str.substring(-3,5));		//-3会被当成0
+			/*alert(str.slice(-4,-2));    -2会从后面开始选择，*/
+		</script>
+	</head>
+	
+	<body>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	选项</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}	
+
+		.box{
+			width:400px;
+			height:300px;
+			margin:0 auto;
+			border:2px #212121 solid;
+			
+
+		}
+		.tou{
+			height:40px;
+
+			border-bottom:2px #545102 solid;
+		}
+		#content{
+			height:260px;
+			
+		}
+		#tabul{
+			height:40px;
+			line-height:40px;
+			background-color: #b6b0b0;
+		}
+		#tabul li{
+			float:left;
+			margin-left:30px;
+			width:80px;
+			text-align:center;
+		}
+		.on{
+			background-color:#d78484;
+			color:#fff;
+		}
+		.nr{
+			height:258px;
+			background-color:#d4aeae;
+			display:none;
+		}
+		#div1{display:block;}
+	</style>
+	<script type="text/javascript">
+		function xuanze(clickobj){
+			var tabobjs=document.getElementById("tabul").children;									//获取tabul下的子标签
+			for(var i=0;i<tabobjs.length;i++)
+			{
+				tabobjs[i].className="";															//给所有的选项“”样式
+
+				document.getElementById(tabobjs[i].getAttribute("a")).style.display="none";			//把所有的div隐藏
+			}
+			clickobj.className="on";																//当前点击对象给on样式
+				document.getElementById(clickobj.getAttribute("a")).style.display="block";			//点击对象对应的div给予显示
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="tou">
+			<ul id="tabul">
+				<li class="on" onclick="xuanze(this)" a="div1">选项一</li>
+				<li onclick="xuanze(this)" a="div2">选项二</li>
+				<li onclick="xuanze(this)" a="div3">选项三</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div id="div1" class="nr">11111111</div>
+			<div id="div2" class="nr">22222222</div>
+			<div id="div3" class="nr">33333333</div>
+		</div>
+	</div>
+</body>
+</html>

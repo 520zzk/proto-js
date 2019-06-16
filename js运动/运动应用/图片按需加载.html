@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 相册等用的比较多 -->
+<!-- 有个src,便会去加载对应资源 -->
+<!-- 
+    我们经常会下载软件下载电视剧，一个电视剧可能有N集
+    1.先把所有的集数全部下载完成，然后一个个开心开心的看
+    2.我们先下一集，然后看完，看完以后再去下下一集，然后再看
+
+    
+    3.我们先下第一集，下载完成以后，再看第一集的时候去下载后面的的内容，这样我们可以
+    看前面的内容的时候，把后边的下完，节约了很多的时间
+
+
+    当页面打开的时候，我们去加载第一张 图片，然后页面加载完成以后，在用户看的时间内
+    去加载后面的内容，那么我们必须有个工具——》Image对象
+ -->
+ <script type="text/javascript">
+    window.onload=function(){
+       
+      var oUl=document.getElementById('ul1');
+      var oImg=document.getElementsByTagName('img');
+    showImage();
+    window.onscroll=showImage;
+      function showImage(){
+        var scrollTop  = document.documentElement.scrollTop || document.body.scrollTop;
+	
+        
+        for(var i=0;i<oImg.length;i++){
+
+            if(!oImg[i].isload && getTop(oImg[i])< scrollTop+document.documentElement.clientHeight){
+                console.log(i);
+                oImg[i].src=oImg[i].getAttribute('_src');
+                oImg[i].isload=true;
+            }
+
+        }
+
+      }
+  
+      function getTop(obj){
+          var iTop=0;
+          while(obj){
+              iTop += obj.offsetTop;
+              obj = obj.offsetParent;
+          }
+          return iTop;
+      }
+    
+    
+    }
+ </script>
+ <style type="text/css">
+#ul1{
+   padding:0px;
+   margin:100px auto 0;
+}
+#ul1 li{
+    float:left;
+    list-style:none;
+    border:1px solid #000;
+    margin:0 0 10px 10px ;
+}
+#ul1 li img{
+    width:300px;
+    height:200px;
+    display:block;
+}
+ body{
+     height:3000px;
+ }
+ </style>
+</head>
+<body>
+    <ul id="ul1">
+        <li><img _src="./images/1.png" src=""alt=""></li>
+        <li><img _src="./images/2.jpg" src=""alt=""></li>
+        <li><img _src="./images/3.jpg" src=""alt=""></li>
+        <li><img _src="./images/4.jpg" src=""alt=""></li>
+        <li><img _src="./images/5.jpg" src=""alt=""></li>
+        <li><img _src="./images/6.jpg" src=""alt=""></li>
+        <li><img _src="./images/7.jpg" src=""alt=""></li>
+        <li><img _src="./images/8.jpg" src=""alt=""></li>
+        <li><img _src="./images/9.jpg" src=""alt=""></li>
+        <li><img _src="./images/14.jpg" src=""alt=""></li>
+        <li><img _src="./images/11.jpg" src=""alt=""></li>
+        <li><img _src="./images/12.jpg" src=""alt=""></li>
+        <li><img _src="./images/13.jpg" src=""alt=""></li>
+        <li><img _src="./images/1.png" src=""alt=""></li>
+        <li><img _src="./images/2.jpg" src=""alt=""></li>
+        <li><img _src="./images/3.jpg" src=""alt=""></li>
+        <li><img _src="./images/4.jpg" src=""alt=""></li>
+        <li><img _src="./images/5.jpg" src=""alt=""></li>
+        <li><img _src="./images/6.jpg" src=""alt=""></li>
+        <li><img _src="./images/7.jpg" src=""alt=""></li>
+        <li><img _src="./images/8.jpg" src=""alt=""></li>
+        <li><img _src="./images/9.jpg" src=""alt=""></li>
+        <li><img _src="./images/14.jpg" src=""alt=""></li>
+        <li><img _src="./images/11.jpg" src=""alt=""></li>
+        <li><img _src="./images/12.jpg" src=""alt=""></li>
+        <li><img _src="./images/13.jpg" src=""alt=""></li>
+        <li><img _src="./images/1.png" src=""alt=""></li>
+        <li><img _src="./images/2.jpg" src=""alt=""></li>
+        <li><img _src="./images/3.jpg" src=""alt=""></li>
+        <li><img _src="./images/4.jpg" src=""alt=""></li>
+        <li><img _src="./images/5.jpg" src=""alt=""></li>
+        <li><img _src="./images/6.jpg" src=""alt=""></li>
+        <li><img _src="./images/7.jpg" src=""alt=""></li>
+        <li><img _src="./images/8.jpg" src=""alt=""></li>
+        <li><img _src="./images/9.jpg" src=""alt=""></li>
+        <li><img _src="./images/14.jpg" src=""alt=""></li>
+        <li><img _src="./images/11.jpg" src=""alt=""></li>
+        <li><img _src="./images/12.jpg" src=""alt=""></li>
+        <li><img _src="./images/13.jpg" src=""alt=""></li>
+        <li><img _src="./images/1.png" src=""alt=""></li>
+        <li><img _src="./images/2.jpg" src=""alt=""></li>
+        <li><img _src="./images/3.jpg" src=""alt=""></li>
+        <li><img _src="./images/4.jpg" src=""alt=""></li>
+        <li><img _src="./images/5.jpg" src=""alt=""></li>
+        <li><img _src="./images/6.jpg" src=""alt=""></li>
+        <li><img _src="./images/7.jpg" src=""alt=""></li>
+        <li><img _src="./images/8.jpg" src=""alt=""></li>
+        <li><img _src="./images/9.jpg" src=""alt=""></li>
+        <li><img _src="./images/14.jpg" src=""alt=""></li>
+        <li><img _src="./images/11.jpg" src=""alt=""></li>
+        <li><img _src="./images/12.jpg" src=""alt=""></li>
+        <li><img _src="./images/13.jpg" src=""alt=""></li>
+       
+    </ul>
+</body>
+</html>

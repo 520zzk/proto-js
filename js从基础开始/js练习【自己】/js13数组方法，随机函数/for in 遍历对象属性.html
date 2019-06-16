@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<script>
+			var str="";
+			var mun=0;
+			for(var attr in document){
+				str+=mun+attr+'.'+document[attr]+'<br/>';
+				mun++;
+			}
+			document.body.innerHTML=str;
+		</script>
+	</body>
+</html>

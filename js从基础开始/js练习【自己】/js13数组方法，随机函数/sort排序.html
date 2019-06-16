@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			var arr=['c','a','d','b'];
+			var arr1=['5','4','76','8','0'];
+		//	arr1.sort();		/*sort是按字符串规则排序*/
+			//alert(arr1);
+			
+			arr1.sort(function(a,b){
+				return b-a;		
+				/*如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。
+				 * 要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。如果想按照其他标准进行排序，就需要
+				 * 提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。比较函数应该具有两个参数 a 和 b，
+				 * 其返回值如下：
+				 * 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
+					若 a 等于 b，则返回 0。
+					若 a 大于 b，则返回一个大于 0 的值。*/
+			});
+			alert(arr1);
+			
+			var arr2=['250px','23px','10px','500px'];
+			arr2.sort(function(a,b){
+				return parseInt(a)-parseInt(b);	
+				/*用parseInt提取数字，进行排序*/
+			});
+			alert(arr2);
+			
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		
+	</body>
+</html>

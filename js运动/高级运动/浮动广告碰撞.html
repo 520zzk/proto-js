@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #div1{
+        width:100px;
+        height:100px;
+        background:red;
+        position:absolute;
+        left:10px;
+        top:10px;
+    }
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            var Div=document.getElementById('div1');
+            var times=null;
+            var x=5;
+            var y=5;
+
+        seattMove();
+         function seattMove(){
+           
+              times=setInterval(function(){
+                 
+                var L = Div.offsetLeft+x;
+                var T = Div.offsetTop+y;
+                if(T>document.documentElement.clientHeight-Div.offsetHeight){
+                    T=document.documentElement.clientHeight-Div.offsetHeight;
+                    y *= -1;
+                }else if(T<0){
+                    T=0;
+                    y *= -1;
+                }
+
+                if(L>document.documentElement.clientWidth-Div.offsetWidth){
+                    L=document.documentElement.clientWidth-Div.offsetWidth;
+                    x *= -1;
+                }else if(L<0){
+                    L=0;
+                    x *= -1;
+                }
+                
+
+                  Div.style.left=L+'px';
+                  Div.style.top=T+"px";
+               
+            },1000/60);
+
+         }
+           
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+</body>
+</html>

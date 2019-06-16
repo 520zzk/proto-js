@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>布告栏</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+        #box{
+            background-image: url(背景.png);
+            width:640px;
+            height:331px;
+            margin:0 auto;
+        }
+		#bugao{
+			height:331px;
+
+		}
+		.biaoti{
+			color:red;
+			width:180px;
+			text-align: center;
+			background: url(标题.png);
+			height:60px;
+			line-height: 60px;
+			font-size: 25px;
+			margin:0 auto;
+		}
+		#zhanshi{
+			width:400px;
+			height:150px;
+			margin:0 auto;
+            padding-top:30px;
+            overflow:hidden;
+		}
+    </style>
+</head>
+<body>
+
+<div id="box">
+	<div id="bugao">
+		<p class="biaoti">布告栏</p>
+
+	<div id="zhanshi" onmouseover="chu()" onmouseout="chonglai()">
+		<div id="p1">
+           <p>明月几时有？把酒问青天。不知天上宫阙，今夕是何年。</p>
+           <p>我欲乘风归去，又恐琼楼玉宇，高处不胜寒。</p>
+           <p>起舞弄清影，何似在人间？</p>
+           <p>转朱阁，低绮户，照无眠。</p>
+           <p>不应有恨，何事长向别时圆？</p>
+           <p>人有悲欢离合，月有阴晴圆缺，此事古难全。</p>
+           <p>但愿人长久，千里共婵娟。</p>
+           <br>
+           <br>
+           <br>
+           <br>
+        </div>
+        <div id="p2"></div>
+	</div>
+	</div>
+</div>
+    <script type="text/javascript">
+        var zs=document.getElementById("zhanshi");
+        var p1=document.getElementById("p1");
+        var p2=document.getElementById("p2");
+
+        if(zs.offsetHeight<=p1.offsetHeight){
+            p2.innerHTML=p1.innerHTML;
+        }
+        function yidong(){
+            zs.scrollTop++;
+            if(zs.scrollTop>=p1.offsetHeight){
+                zs.scrollTop=0;
+            }
+        }
+        var myset=setInterval(function(){yidong();},50);
+
+        function chu(){
+            clearInterval(myset);
+        }
+        function chonglai(){
+            myset=setInterval(function(){yidong();},50);
+        }
+    </script>
+</body>
+</html>

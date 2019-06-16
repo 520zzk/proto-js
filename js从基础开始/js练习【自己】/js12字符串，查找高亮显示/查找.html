@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>查找</title>
+<style>
+p { border:10px solid #ccc; background:#FFC; width:400px; padding:20px; font-size:16px; font-family:微软雅黑; }
+span { background:yellow; }
+</style>
+
+</head>
+
+<body>
+
+<input type="text" />
+
+<input type="button" value="查找	" />
+<input type="button" value="还原	" />
+<p>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！<br />
+2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</p>
+
+<script type="text/javascript">
+ 
+ window.onload=function(){
+ 	var oBtn=document.getElementsByTagName('input');
+ 	var oP=document.getElementsByTagName('p')[0];
+ 	var str=oP.innerHTML;
+ 	
+ 	oBtn[1].onclick=function(){
+ 		var str1=oBtn[0].value;
+ 		var arrp=str.split(str1);
+ 		oP.innerHTML=arrp.join('<span>'+str1+'</span>');		s
+ 		/*arrayObject.join(separator)返回一个字符串。该字符串是通过把 arrayObject 的每个元素转换为字符串，
+ 		 * 然后把这些字符串连接起来，在两个元素之间插入 separator 字符串而生成的。*/
+ 	}
+ 	
+ 	oBtn[2].onclick=function(){
+ 		oP.innerHTML=str;
+ 	}
+ 	
+ 	
+ }
+</script>
+
+</body>
+</html>

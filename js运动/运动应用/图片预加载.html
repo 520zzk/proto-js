@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 相册等用的比较多 -->
+<!-- 有个src,便会去加载对应资源 -->
+<!-- 
+    我们经常会下载软件下载电视剧，一个电视剧可能有N集
+    1.先把所有的集数全部下载完成，然后一个个开心开心的看
+    2.我们先下一集，然后看完，看完以后再去下下一集，然后再看
+
+    
+    3.我们先下第一集，下载完成以后，再看第一集的时候去下载后面的的内容，这样我们可以
+    看前面的内容的时候，把后边的下完，节约了很多的时间
+
+
+    当页面打开的时候，我们去加载第一张 图片，然后页面加载完成以后，在用户看的时间内
+    去加载后面的内容，那么我们必须有个工具——》Image对象
+ -->
+ <script type="text/javascript">
+    window.onload=function(){
+        var Oimg=document.getElementsByClassName('img1')[0];
+        var oImage=new Image();
+        /*
+        属性：
+        src：当我们给Image对象的src属性赋值一个url的时候，这个Image对象就去加载
+        url资源，加载完成以后的资源被保存到了一个浏览器的缓存文件夹里面，下次如果我们要去
+        调用这个url地址的时候，直接是从缓存文件夹读取到的,所以很快
+            onload:当资源加载完成的时候触发，
+            onerror:当资源加载失败的时候触发
+        */
+        var arr=[
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349219&di=604e1f046e8e1dfe7921b1c0a336a387&imgtype=0&src=http%3A%2F%2Fp0.ifengimg.com%2Fpmop%2F2016%2F1228%2F158AF34F7358554C01F3DCE946C0CC4104586380_size44_w550_h733.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349219&di=79620d64d9e4f609f32cff9a69efb817&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201205%2F05%2F20120505230451_xE2jt.thumb.700_0.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349219&di=3d654b37ce70ee4f193b271b9348f547&imgtype=0&src=http%3A%2F%2Fdingyue.nosdn.127.net%2Fz3bDK99TJW5R56g6BVH9DyjbTamTRLEV61s8aOt2j9n2g1537360847610compressflag.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349219&di=905fcf8b80deee90a45bce22ba5bc3ae&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201510%2F29%2F20151029172108_E8jCu.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349219&di=bc9e9dd6a2cde63f7f0b227361d664e5&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201505%2F14%2F20150514124546_sFWfM.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349218&di=aec5c7f88b5d7036cd0751e949896cb1&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft0196fbe3f200ec4a3d.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349218&di=5bd74bf682a1a001da0c9848b303ab38&imgtype=0&src=http%3A%2F%2Fwww.gaoxiaoa.cn%2Fuploads%2Fallimg%2F180629%2F12432IC3-7.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349217&di=bb71825e6bd03d4131add5d796028933&imgtype=0&src=http%3A%2F%2Fimgq.duitang.com%2Fuploads%2Fitem%2F201506%2F04%2F20150604193351_UNsfe.png",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349216&di=ed754d0ab4ce240e816d1367264333da&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201505%2F09%2F20150509173035_8ir3E.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349215&di=01348e81bc5b44f3ffbc4d01ed5ad0df&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201501%2F02%2F20150102211112_HykQs.thumb.700_0.jpeg"
+        ];
+       // console.log(Oimg);
+       var num=0;
+       var i=0;
+       xunlei();
+       Oimg.onclick=function(){
+           console.log('zzz');
+           i++;
+           if(i<arr.length){
+               Oimg.src=arr[i];
+           }
+       }
+
+       function xunlei(){
+           oImage.src=arr[num];
+           oImage.onload=function(){
+               num++;
+               if(num<arr.length){
+                   xunlei();    //递归
+               }
+               document.title=num+'/'+arr.length;
+           }
+       }
+        
+    }
+ </script>
+ <style type="text/css">
+.img1{
+    width:400px;
+    height:300px;
+}
+ </style>
+</head>
+<body>
+<img class="img1" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540830349220&di=a38289c3e82044a92d86122f241f3e42&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201408%2F30%2F20140830170758_Ed8yF.jpeg" alt="">
+
+</body>
+</html>

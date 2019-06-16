@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0px;
+        padding:0px;
+    }
+    #div1,#div2{position:absolute;left:0;top:0;}
+    #div2{color:red;width:16px;height:20px;overflow:hidden;}
+    #div2 span{
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:300px;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload=function(){
+        var div2=document.getElementById("div2");
+        var oSpan2 = div2.getElementsByTagName('span')[0];
+        var times=null;
+
+
+        setInterval(function(){
+            if(div2.offsetLeft==256){
+                div2.style.left=0;
+            }else{
+                 div2.style.left=div2.offsetLeft+1+"px";
+                 oSpan2.style.left=-div2.offsetLeft+'px';
+            }
+           
+
+        },1000/60);
+    }
+    </script>
+</head>
+<body>
+  <div id="div1"><span>我们的事业并不显赫，但将永远存在</span></div>
+  <div id="div2"><span>我们的事业并不显赫，但将永远存在</span></div>
+</body>
+</html>

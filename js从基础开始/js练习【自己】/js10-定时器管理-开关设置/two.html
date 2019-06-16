@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+			position:absolute; 
+			width:100px;
+			height:100px;
+			margin-top:15px;
+			left:10px;
+			background:red;}
+		</style>
+		<script src="../javascript/Moblide.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var oBin1=document.getElementById('btn1');
+				var oBin2=document.getElementById('btn2');
+				
+				var oDiv=document.getElementById('div1');
+				
+			
+				oBin1.onclick=function(){
+					
+					Moblide(oDiv,"left",20,500);
+				}
+				
+				oBin2.onclick=function(){
+					
+					Moblide(oDiv,"top",20,500,function(){Moblide(oDiv,"width",20,1000);});
+				}
+				
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<input type="button" value="往下后变宽" id="btn2"/>
+		
+		<input type="button" value="往前" id="btn1"/>
+		<div id="div1"></div>
+	</body>
+</html>

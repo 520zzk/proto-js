@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>切换</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+    body,img,div,ul,li{
+        margin:0px;
+        padding:0px;
+        list-style:none;
+    }
+    img{
+        border:none;
+        vertical-align:middle;
+    }
+    #box{
+        width:450px;
+        height:270px;
+        margin:0 auto;
+        margin-top:50px;
+        position:relative;
+    }
+    #pic{
+        width:450px;
+        height:270px;
+        overflow:hidden;
+    }
+  
+    #shuzi{
+        position:absolute;
+        bottom:10px;
+
+    }
+    #shuzi span{
+        float:left;
+        width:20px;
+        height:20px;
+        text-align:center;
+        background:#fdf;
+        color:#000;
+        margin-left:10px;
+    }
+
+
+     #shuzi span.on{
+         background:#fc2;
+        color:#154211;
+    }
+   
+    </style>
+
+</head>
+<body>
+    <div id="box">
+
+        <div id="pic">
+            <ul>
+                <li><a href=""><img src="1525939654.jpg" alt=""></a></li>
+                <li><a href=""><img src="1525939716.jpg" alt=""></a></li>
+                <li><a href=""><img src="1526523343.jpg" alt=""></a></li>
+                <li><a href=""><img src="1526525797.jpg" alt=""></a></li>
+                <li><a href=""><img src="1526891255.jpg" alt=""></a></li>
+            </ul>
+        </div>
+
+        <div id="shuzi">
+            <ul>
+            	<!-- 定义鼠标进来动作和鼠标离开动作 -->
+                <span class="on" onmouseover="chu(0)" onmouseout="myset=window.setInterval('setNext()',1000)">1</span>
+                <span  onmouseover="chu(1)" onmouseout="myset=window.setInterval('setNext()',1000)">2</span>
+                <span  onmouseover="chu(2)" onmouseout="myset=window.setInterval('setNext()',1000)">3</span>
+                <span  onmouseover="chu(3)" onmouseout="myset=window.setInterval('setNext()',1000)">4</span>
+                <span  onmouseover="chu(4)" onmouseout="myset=window.setInterval('setNext()',1000)">5</span>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+         var lis=document.getElementById("pic").getElementsByTagName("li");				/*从pic中获取li标签的集合，数组！*/
+         var lis2=document.getElementById("shuzi").getElementsByTagName("span");		/*同理*/
+
+         function setNow(index){				/*做一个调用函数方便调用，一个是循环调用，一个是鼠标进来（onmouseover）调用*/
+
+            for(i=0;i<lis.length;i++){		/*逐一清除样式*/
+                    lis[i].style.display="none";
+                    lis2[i].className="";
+                   
+                      }
+        	lis[index].style.display="block";	/*【】中应是头上的括号中的index，表示当下，*/
+            lis2[index].className="on";
+         }
+
+         var current=0;			
+
+         function setNext(){		/*定义循环的次数和循环调用setnow()*/
+            current++;					
+            if(current>=lis.length){			/*判断次数*/	
+                current=0;
+            }
+            setNow(current);
+         }
+         var myset=setInterval("setNext()",1000);	/*定义循环时间和执行setNext*/
+
+         function chu(index2){		/*鼠标进来动作的函数调用*/
+            clearInterval(myset);	/* 清除循环*/
+            current=index2;			/*这个是把鼠标当前参数的给current，这样鼠标离开时，current才是在下一个继续。不会出现断开*/
+            setNow(current);		/*执行一次，将对应页面调出 例如chu(3)相当index=3*/
+
+         }
+    </script>
+</body>
+</html>

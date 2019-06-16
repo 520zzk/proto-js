@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> </title>
+		<style type="text/css">
+			body,img,p,span,ul,li{
+				margin:0px;
+				padding:0px;
+				list-style:0px;
+			}
+			img{
+				vertical-align:top;
+				border:none;
+				
+			}
+			a{
+				text-decoration:none;
+			}
+			#box{
+				width:800px;
+				height:300px;
+				margin:0 auto;
+				border:2px solid #FF0000;
+				margin-top:50px;
+				text-align: center;
+				position:relative;
+			}
+			#box p{
+				position:absolute;
+				width:670px;
+				height:60px;
+				line-height:60px;
+				top:85px;
+				left:63px;
+				background:#159357;
+				color:#fff;
+				font-size:35px;
+				display:none;
+			
+			}
+			.box2{
+				height:113px;
+				margin-top:150px;
+				overflow:hidden;
+			}
+			#div1 img{
+				position:relative;
+				width:80px;
+			}
+			#div2 img{
+				position:relative;
+				width:80px;
+			}
+		</style>
+		<script type="text/javascript" src="js/Moblide.js"></script>
+		<script tyoe="text/javascript">
+			window.onload=function(){
+			
+				var Oimg1=document.getElementById('div1').getElementsByTagName('img');
+				var Oimg2=document.getElementById('div2').getElementsByTagName('img');
+				var times=null;
+				var str3='';var str2="";
+				
+				str3=nowData();
+							//给str3赋值
+				fuzhi(nowData());
+
+				function nowData(){
+					var myTime=new Date();
+					var Iyear=myTime.getFullYear();
+					var Imonth=myTime.getMonth()+1;
+					var Idate=myTime.getDate();
+					var Iweek=myTime.getDay();
+					var Ihour=myTime.getHours();
+					var Imin=myTime.getMinutes();
+					var Isec=myTime.getSeconds();
+					str2=both(Ihour)+':'+both(Imin)+':'+both(Isec);
+					
+					console.log(str2);
+					return str2;
+				}
+				
+				// zzz();	
+				function zzz(){
+					times=setInterval(function(){			
+						var s=nowData();		/*定义一个新的str2*/
+				
+						chuli(s);				/*传给chuli（）*/
+					},1000);
+				}
+					
+				function chuli(sss){
+					getNum(sss);
+					
+					str3=sss;				/*对比完之后赋值	*/
+				}
+				
+				function change(num,ch){		/*接受两个数*/
+					Oimg2[num].src='img/'+ch+'.jpg';		/*提前一步吧下面图片改变*/
+					Moblide(Oimg1[num],'top',-113,function(){	/*保持不变，上移完成后改变图片*/
+						this.src='img/'+ch+'.jpg';
+						reset(this);	/*重置this状态*/				
+					})
+					
+					Moblide(Oimg2[num],'top',-113,function(){	/*第二张图片同时向上*/
+						this.src='img/'+ch+'.jpg';
+						reset(this);
+					})
+				}
+				
+				function getNum(sss){		/*sss==str2,为一个字符串 例如18:31:21*/
+					var num=0;
+					var ch=0;
+					for(var i=0;i<sss.length;i++){
+						if(sss[i]!=str3[i]){	/*新旧对比*/
+							num=i;
+							ch=sss[i];
+							
+							change(num,ch);
+						}
+					}
+				}
+				
+				function reset(obj){
+					setTimeout(function(){
+						obj.style.top=0;
+					},5)
+				}
+				
+				function fuzhi(str){	
+					console.log(str);		//一个接受返回值，为字符串
+					for(var i=0;i<Oimg1.length;i++){	//按照对应的图片个数进行循环
+						if(str[i]!=':'){	
+							console.log(typeof(str[i]));		/*每一个进行比较*/
+							Oimg1[i].src='img/'+str[i]+'.jpg';		/*字符串中对应图片显示，第一个图片对应第一个字符具体数*/
+							Oimg2[i].src='img/'+str[i]+'.jpg';
+						}
+					}
+				}				/*结束执行，回到93*/	
+				
+				
+				
+				function both(arrt){
+					return arrt<10?'0'+arrt:''+arrt;
+				}
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="box">
+		
+		<div class="box2">
+		<div id="div1">
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		</div>
+		<div id="div2">
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		</div>
+		</div>
+		
+		</div>
+	</body>
+</html>

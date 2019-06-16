@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    body{
+        margin:0px;
+    }
+    #ul{
+        margin:0;
+        padding:0px;
+        width:330px;
+        
+    }
+        li{
+            width:100px;
+            height:100px;
+            background:red;
+            float:left;
+            list-style:none;
+            margin:10px 0 0 10px;
+        }
+    </style>
+    <script src="./js/starMove.js"></script>
+    <script type="text/javascript">
+    //  <!-- 元素居中放大，除了宽高，还有改变元素定位，
+    //     但是，为了后期好维护，尽量不要在css表中设置，js动态添加
+    // -->
+    window.onload=function(){
+        var oUl=document.getElementById('ul');
+        var aLi=oUl.getElementsByTagName('li');
+        var arr=[];
+        var Zindex=1;
+        for(var i=0;i<aLi.length;i++){
+            /*在js中去设置css样式时，在同一个代码块中，有些css样式设置的权限要高于其他的样式*/
+           
+            // aLi[i].style.position="absolute";
+            /*position会先运行，然后再去获取，就会产生*/
+            /*解决，放在不同的代码快块中*/
+            arr.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop});
+        }
+        console.log(arr);
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].style.left=arr[i].left+"px";
+            aLi[i].style.top=arr[i].top+"px";
+            aLi[i].style.position="absolute";/*会有一个margin-left和left叠加的关系*/
+            /*解决，清除margin-left*/
+           aLi[i].style.margin=0+'px';
+
+           aLi[i].onmouseover=function(){
+               this.style.background="green";
+               this.style.zIndex=Zindex++;
+              
+            startMove(this,{
+                   width:200,
+                   height:200,
+                   left:arr[this.index].left-50,
+                   top:arr[this.index].top-50
+
+               });
+           }
+           aLi[i].onmouseout=function(){
+            
+            startMove(this,{
+                   width:100,
+                   height:100,
+                   left:arr[this.index].left,
+                   top:arr[this.index].top
+
+               });
+           }
+       
+       
+       }
+
+
+
+    }
+        
+
+    </script>
+</head>
+<body>
+    <ul id="ul">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

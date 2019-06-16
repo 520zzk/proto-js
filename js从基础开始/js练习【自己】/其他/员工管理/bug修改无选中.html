@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./作业的相关文件/ease.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="title">
+            <h2>员工信息管理</h2>
+            <a href="javascript:;" id="addBtn">添加</a>
+        </div>
+
+        <!-- 添加列表 -->
+        <div class="addArea">
+            <input type="text" placeholder="姓名" class="name">
+            <label class="gender-label">
+                <input type="checkbox" class="sex">
+                <div class="gender">
+                    <div class="genderInner">
+                        <span>男</span>
+                        <span>女</span>
+                    </div>
+                </div>
+            </label>
+            <input type="number" placeholder="年龄" min="15" max="60" class="age">
+            <label class="state-label">
+                <input type="checkbox" class="state">
+                <div class="stateData">
+                    <div class="stateInner">
+                        <span>在职</span>
+                        <span>离职</span>
+                    </div>
+                </div>
+            </label>
+            <input type="button" value="录入信息" id="Entering">
+        </div>
+        <!-- 筛选区域 -->
+        <div class="filterTab">
+            <div><a href="javascript:;" class="active">所有员工信息</a></div>
+            <div><a href="javascript:;">女员工信息</a></div>
+            <div><a href="javascript:;">男员工信息</a></div>
+            <div><a href="javascript:;">在职员工信息</a></div>
+            <div><a href="javascript:;">离职员工信息</a></div>
+        </div>
+        <!-- 信息展示区域 -->
+        <section class="staffInfo">
+            <ul class="list">
+                <!-- <div class="listHead">
+                        <input type="checkbox" class="checkedAll">
+                        <div>姓名</div>
+                        <div>性别</div>
+                        <div>年龄</div>
+                        <div>状态</div>
+                        <div>操作</div>
+                    </div> -->
+                <!-- <li>
+                        <input type="checkbox">
+                        <div>张三</div>
+                        <div>男</div>
+                        <div>18</div>
+                        <div><a href="javascript:;" class="stateBtn">在职</a></div>
+                        <div><a href="javascript:;" class="dropBtn">删除</a></div>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <div>张三</div>
+                        <div>男</div>
+                        <div>18</div>
+                        <div><a href="javascript:;" class="stateBtn">在职</a></div>
+                        <div><a href="javascript:;" class="dropBtn">删除</a></div>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <div>张三</div>
+                        <div>男</div>
+                        <div>18</div>
+                        <div><a href="javascript:;" class="stateBtn">在职</a></div>
+                        <div><a href="javascript:;" class="dropBtn">删除</a></div>
+                    </li> -->
+            </ul>
+        </section>
+        <!-- 管理区域 -->
+        <div class="controlArea">
+            <a href="javascript:;">删除选中项</a>
+            <a href="javascript:;">入职选中项</a>
+            <a href="javascript:;">离职选中项</a>
+        </div>
+    </div>
+</body>
+
+<script src="./作业的相关文件/data.js"></script>
+<script>
+
+var uList=document.getElementsByClassName("list")[0];
+var listData=data.concat(); //无引用复制
+
+function Data(){
+    this.Div=null;
+    let div = document.createElement('div');
+    div.innerHTML=`<input type="checkbox" class="checkedAll">
+                        <div>姓名</div>
+                        <div>性别</div>
+                        <div>年龄</div>
+                        <div>状态</div>
+                        <div>操作</div>`;
+    div.className="listHead";
+    this.Div=div;
+    this.listData=listData.concat();    //操作数组
+    this.filArr=[]; //临时数组
+}
+Data.prototype.init=function(dom,data){
+    this.delete(dom);       //清空内容
+    let t="在职";
+    let f="离职";
+    dom.appendChild(this.Div);  //添加标题行
+    for(let i=0;i<data.length;i++){     //渲染data数据
+        let li=document.createElement('li');
+        li.innerHTML=`<input type="checkbox">
+                        <div>${data[i].name}</div>
+                        <div>${data[i].gender}</div>
+                        <div>${data[i].age}</div>
+                        <div><a href="javascript:;" class="stateBtn">${data[i].state ?t:f}</a></div>
+                        <div><a href="javascript:;" class="dropBtn">删除</a></div>`;
+         li.id=i;  //添加属性，用以标识
+         dom.appendChild(li); 
+    } 
+    this.uList=document.getElementsByClassName('list')[0];
+    this.Btn=this.uList.getElementsByTagName('input');
+    this.stateB=this.uList.getElementsByClassName('stateBtn');
+    this.drop=this.uList.getElementsByClassName("dropBtn");
+    this.filters=document.getElementsByClassName('filterTab')[0].getElementsByTagName("a");
+    this.sex=document.getElementsByClassName("sex")[0];
+    this.state=document.getElementsByClassName("state")[0];
+    this.adBt=document.getElementById("addBtn");
+    this.addArea=document.getElementsByClassName("addArea")[0];
+    this.name= this.addArea.getElementsByClassName("name")[0];
+    this.age= this.addArea.getElementsByClassName("age")[0];
+    this.Enter= document.getElementById('Entering');
+    this.conArea=document.getElementsByClassName('controlArea')[0];
+    this.myFilter(this.filters);    //挂载筛选
+    this.clickAll(this.Btn);        //挂载点击
+   this.stateFn(this.stateB,this.drop);      //挂载离入职及删除
+}
+Data.prototype.delete=function(dom){
+    dom.innerHTML='';
+}
+Data.prototype.clickAll=function(dom){ 
+    let _this=this;
+   if(dom.length==1)
+   {
+       dom[0].checked=false;
+    }
+    this.conArea.style.display="none";
+    for(let i=0;i<dom.length;i++){
+        dom[i].onclick=function(ev){     //全选点击
+            if(ev.target==dom[0]){
+                if(dom[0].checked==false){
+                    for(var j=0;j<dom.length;j++){
+                        dom[j].checked=false;
+                    }
+                }else{
+                    for(var j=0;j<dom.length;j++){
+                        dom[j].checked=true;
+                    }
+                }
+               
+            }else{  //点击别的
+               let num=0;
+               for(var i=1;i<dom.length;i++){
+					if(dom[i].checked)num++;
+					
+                    }
+				if(num==dom.length-1){
+					dom[0].checked=true;
+				}else{
+                    dom[0].checked=false;
+                }
+            }
+            if(_this.Checked(dom).length>0){
+                    _this.conArea.style.display="";
+                }else{
+                   _this.conArea.style.display="none";
+                }
+        }
+    }
+}
+Data.prototype.colligate=function(ev){
+    let Btn=this.Btn;   //选择按钮
+    let checkedArr=this.Checked(Btn);
+    let a=[];
+        if(ev=="入职选中项"){
+            for(var i=0;i<checkedArr.length;i++){ 
+                a.push(checkedArr[i].parentNode.id);
+            }
+            for(var j=this.filArr.length-1;j>=0;j--){
+                if(a[j]){
+                this.filArr[a[j]].state=true;
+                this.listData[a[j]].state=true;
+                }
+            }
+            this.init(this.uList,this.filArr);
+        }else if(ev=="离职选中项"){
+            for(var i=0;i<checkedArr.length;i++){ 
+                    a.push(checkedArr[i].parentNode.id);
+                }
+                for(var j=this.filArr.length-1;j>=0;j--){
+                    if(a[j]){
+                        this.filArr[a[j]].state=false;
+                        this.listData[a[j]].state=false;
+                    }
+                }
+                this.init(this.uList,this.filArr);
+        }else{
+            for(var i=0;i<checkedArr.length;i++){ 
+                this.uList.removeChild(checkedArr[i].parentNode);
+                a.push(checkedArr[i].parentNode.id);
+                }
+                var z=[];
+                for(let j=this.filArr.length-1;j>=0;j--){
+                    if(a[j]){
+                       z.push(this.filArr.splice(a[j],1));
+                    } 
+                }
+                var c=this.listData.filter(function(item,index){
+                        for(var j=0;j<z.length;j++){console.log('ddd');
+                            if(JSON.stringify(z[j][0]).indexOf(JSON.stringify(item))){
+                                return item;
+                            }
+                        }
+                    
+                });
+                this.listData=c;
+                this.init(this.uList,this.filArr);
+        }   
+}
+
+Data.prototype.stateFn=function(dom,dom2){
+    let _this=this;
+    for(let i=0;i<dom.length;i++){
+        dom[i].onclick=function(){
+           this.parentNode.parentNode.firstElementChild.checked=true;
+           if(this.innerHTML=="离职"){
+                _this.colligate("入职选中项");
+            }else{
+                _this.colligate("离职选中项");
+            }
+        }
+        dom2[i].onclick=function(){
+            this.parentNode.parentNode.firstElementChild.checked=true;
+            _this.colligate("我好帅 ");
+        }
+    }
+}
+Data.prototype.Checked=function(btn){
+    var btnArr=[];
+    for(var i=1;i<btn.length;i++){
+        if(btn[i].checked==true){
+            btnArr.push(btn[i]);
+        }
+    }
+    return btnArr;
+}
+Data.prototype.myFilter=function(dom){
+    let _this=this;
+    if(dom[0].className=="active"){ //每次显示全部员工时，重新赋值
+       this.filArr =this.listData.concat(); 
+    }
+     let a=["所有","女","男","入职","离职"];
+    for(let i=0;i<a.length;i++){
+        dom[i].onclick=function(){
+            fil(this);
+            _this.filArr=filNum(a[i]);//筛选后的 数组
+            _this.init(_this.uList,_this.filArr);
+            _this.addBtn(_this.filArr.length);//判断刷选有没有，没有显示添加
+            console.log(_this.filArr,_this.listData);
+        } 
+    }
+
+    function filNum(a){
+        var arr=[];
+        switch(a){
+            case "女":{     //false==男,在职
+                arr=_this.listData.filter(function(item,index,){
+                   if(item.gender=="女"){
+                    return item;
+                   }
+                });
+              _this.sex.checked=true;
+                return arr;
+            }
+            case "男":{
+                arr=_this.listData.filter(function(item,index,){
+                   if(item.gender=="男"){
+                    return item;
+                   }
+                });
+              _this.sex.checked=false;
+                return arr;
+            }
+            case "入职":{
+                arr=_this.listData.filter(function(item,index,){
+                   if(item.state==true){
+                    return item;
+                   }
+                });
+              _this.state.checked=false;
+                return arr;
+            }
+            case "离职":{
+                arr=_this.listData.filter(function(item,index,){
+                   if(item.state==false){
+                    return item;
+                   }
+                });
+              _this.state.checked=true;
+                return arr;
+            }
+            default :{
+                return _this.listData;
+            }
+        }
+        
+    }
+    console.log(this.filArr,this.listData);
+   function fil(me){
+       for(let i=0;i<dom.length;i++){
+           dom[i].className="";
+       }
+    me.className="active";
+   }
+}
+Data.prototype.addBtn=function(zzz){
+   this.addArea.style.display="none";
+   let _this=this;
+    this.adBt.onclick=function(){
+        if(this.innerHTML=="添加"){
+            _this.addArea.style.display="";
+            this.innerHTML="取消";
+            _this.dataAdd();
+        }else{
+            _this.addArea.style.display="none";
+            this.innerHTML="添加"
+        }
+    }
+    if(zzz<=0){
+        this.addArea.style.display="";
+        this.adBt.innerHTML="取消";
+        _this.dataAdd();
+    }else{
+        this.adBt.innerHTML="添加";
+    }
+}
+Data.prototype.dataAdd=function(){
+    var _this=this;
+    this.Enter.onclick=function(){
+        let num=_this.listData.length+1;
+        let b={
+            id:num,
+            name:_this.name.value,
+            age:_this.age.value,
+            gender:_this.sex.checked?"女":"男",
+            state:_this.state.checked?false:true,
+            checked:false
+        };
+       if(b.name!=""&&b.age!=""){
+            _this.listData.push(b);
+          _this.init(_this.uList,_this.listData);
+          _this.name.value="";
+          _this.age.value="";
+       }else{
+           alert("请不要空选项内容");
+       }
+        
+    };
+}
+var app=new Data();
+app.init(uList,listData);
+var aArr=document.getElementsByClassName('controlArea')[0].children;
+    for(let i=0;i<aArr.length;i++){
+        aArr[i].onclick=function(){
+            app.colligate(this.innerHTML);
+        }
+    }
+app.addBtn();
+</script>
+</html>

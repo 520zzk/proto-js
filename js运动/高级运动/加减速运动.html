@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        width:100px;
+        height:100px;
+        background: #000;
+        position:absolute;
+        left:1px;
+    }
+    </style>
+    <script tyoe="text/javascript">
+    window.onload=function(){
+
+    var div=document.getElementById('box');
+    var btn=document.getElementById('btn');
+    var times=null;
+    var speed=10;
+
+     btn.onclick=startMovr;
+
+     function startMovr(){
+         clearInterval(times);
+        
+         times=setInterval(function(){
+             speed+=8;
+            div.style.left=div.offsetLeft+speed+"px";
+         },30);
+     }
+
+
+
+
+    }
+    
+
+
+    </script>
+</head>
+<body>
+    <input type="button" value="点击" id="btn">
+    <div id="box">
+
+    </div>
+</body>
+</html>

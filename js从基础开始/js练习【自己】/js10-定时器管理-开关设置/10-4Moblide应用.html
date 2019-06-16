@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../javascript/Moblide.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				
+				var str='';
+				var len=20;
+				var times=null;
+				for(var i=0;i<len;i++){
+					str+='<div style="width:50px;height:50px;background:pink;position:absolute;top:10px;left:'+i*60+'px;"></div>';
+				}
+				document.body.innerHTML=str;
+				
+				var oDiv=document.getElementsByTagName('div');
+				var num=0;var t=true;
+				document.onclick=function(){
+					clearInterval(times);
+					if(t){
+					times=setInterval(function(){
+					Moblide(oDiv[num],"top",30,500);
+					num++;
+					if(num==len){
+						clearInterval(times);
+						num=0;t=false;
+						}
+					}
+						
+					,30);
+					}
+					
+					else{
+					times=setInterval(function(){
+					Moblide(oDiv[num],"top",30,10);
+					num++;
+					if(num==len){
+						clearInterval(times);
+						num=0;t=true;
+						}
+					},30)
+				}
+				
+				}
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		
+		
+	</body>
+</html>

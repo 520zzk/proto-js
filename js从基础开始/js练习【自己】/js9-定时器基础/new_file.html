@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			body,div,img,ul,li,p{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			img{
+				vertical-align:top;
+				border:none;
+			}
+			#box{
+				width:500px;
+				height:300px;
+				margin:0 auto;
+				margin-top:150px;
+				
+			}
+			#ul1{
+				height:30px;
+				background:#154872;
+				color:#fff;
+			}
+			#ul1 li:hover{
+				background: #FFC0CB;
+				color:#000;
+			}
+			#ul1 li{
+				float:left;
+				height:30px;
+				line-height:30px;
+				width:100px;
+				text-align:center;
+				
+			}
+			#ul2{
+				position:relative;
+			}
+			#ul2 li{
+				position:absolute;
+				width:100px;
+				height:100px;
+				float:left;
+				margin-top:10px;
+				display: none;
+				margin-left:5px;
+			}
+			#ul2 li img{
+				width:100px;
+				height:100px;
+				
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				
+			var Ul1=document.getElementById('ul1');
+			var Ul2=document.getElementById('ul2');
+			var Ll1=Ul1.getElementsByTagName('li');
+			var Ll2=Ul2.getElementsByTagName('li');
+			var times=null;
+			var t=0;var x=0;
+			for(var i=0; i<Ll1.length;i++){
+				Ll1[i].index=t;
+				Ll2[i].index=t;
+			
+				Ll1[i].onmouseover=function(){
+							
+				see(this.index);
+				
+				}
+				Ll1[i].onmouseout=function(){
+					
+				out(this.index);
+				}
+				Ll2[i].onmouseover=function(){
+					clearInterval(times);
+				}
+				Ll2[i].onmouseout=function(){
+					out(this.index);
+				}
+				t++;
+				if(t>Ll1.length)t=0;
+				Ll2[i].style.left=x+'px';
+						x+=100;
+					
+						if(x>400)x=0;
+			}
+			
+				function see(obj){
+					
+
+					Ll2[obj].style.display="block";
+					console.log(Ll2[obj]);
+				}
+				
+				
+				function out(obj){
+					times=setTimeout(function(){
+						Ll2[obj].style.display="none";
+					},100)
+				}
+			}
+		
+			
+		</script>
+	</head>
+	
+	
+	<body>
+		<div id="box">
+			<ul id="ul1">
+				<li>首页</li>
+				<li>关于我们</li>
+				<li>商品介绍</li>
+				<li>售后服务</li>
+				
+			</ul>
+			<ul id="ul2">
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				
+			</ul>
+		</div>
+	</body>
+</html>

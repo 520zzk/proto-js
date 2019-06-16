@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #box{
+            height:400px;
+            border:1px solid #000;
+            overflow: auto;
+        }
+        .file{
+            padding:20px;
+            width:80px;
+            margin:20px;
+            float:left;
+            border:1px solid transparent;
+            position:relative;
+            background:#f1f1f1;
+        }
+        .fileActive {
+            border-color: #000;
+            background: #fff;
+            color:rgb(226, 125, 31);
+        }
+        .file span{
+            display:block;
+            font:14px/30px "宋体";
+            text-align:center;
+            width:80px;
+            height:60px;
+            overflow: hidden;
+        }
+        .file i{
+            position:absolute;
+            left:1px;
+            top:1px;
+            border:1px solid #000;
+            width:16px;
+            height:16px;
+         }
+         .fileActive i{
+             display:block;
+         }
+         .checked {
+            background: url('img/checked.png');
+        }
+        .selection{
+            position:fixed;
+            border:1px solid red;
+            background :rgb(0,5,65,.2);
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="creatrBtn" value="新建文件夹"> 
+    <label ><input type="checkbox" id="checkAll">全选</label>
+    <div id="box">
+        <!-- <div class="file fileActive">
+            <img src="./img/folder-b.png" alt="">
+            <span>新建文件夹</span>
+            <i class="checked"></i>
+        </div> -->
+    </div>
+    <script type="text/javascript">
+        let Btn=document.getElementById('creatrBtn');
+        let box=document.querySelector('#box');
+        let filearr=document.querySelectorAll('.file');
+        let checkAll=document.querySelector('#checkAll');
+        /*点击创建*/
+        Btn.onclick=function(){
+            var file=document.createElement('div');
+            file.className='file';
+            file.innerHTML=`<img src="./img/folder-b.png" alt="">    
+                            <span ondblclick="dbRevise()">新建文件夹</span>
+                             <i></i>
+                            `;
+            box.appendChild(file);
+            checkAll.checked=false;
+            Btn.onmousedown=function(e){
+                e.stopPropagation();
+            }
+        }
+       
+       function dbRevise(ev){   //修改文件名
+            var ev = window.event || ev;
+            ev.stopPropagation();
+            let Input = document.createElement('input');
+            Input.type = "text";
+            var obj =  ev.target;
+            var val = obj.innerHTML;
+            obj.innerHTML="";
+            Input.value = val;
+            Input.style.cssText = "z-index:111;border: 1px solid #548721;width:80px;height:30px;position:absolute;left:20px;top:96px;";
+            ev.target.appendChild(Input);
+            Input.focus();
+            Input.onkeydown = function(event){
+                event.keyCode==27 ?  obj.innerHTML = val : null;
+               if(event.keyCode==13){
+                    let i = confirm("确认修改文件名为: "+Input.value);
+                    if(i){
+                        obj.innerHTML = Input.value;
+                    }else{
+                        obj.innerHTML = val;
+                    }
+               }
+            }
+       }
+   
+        /*事件委托*/
+        box.addEventListener('mouseover',function(e){
+            var e=e ||window.event;
+            let file=null;
+            
+            if(e.target.classList.contains('file')){
+               file=e.target;
+            }else if(e.target.parentNode.classList.contains('file')){
+                file=e.target.parentNode;
+            }
+            if(file){
+                file.classList.add('fileActive');
+               
+                }
+           
+        });
+        box.addEventListener('mouseout',function(e){
+            var e=e ||window.event;
+            let file=null;
+            if(e.target.classList.contains('file')){
+               file=e.target;
+            }else if(e.target.parentNode.classList.contains('file')){
+                file=e.target.parentNode;
+            } 
+            if(file){
+                    let checked=file.querySelector('i');
+                    if(!checked.classList.contains('checked')){
+                        file.classList.remove('fileActive');
+                    }
+                   
+                }
+                
+          });
+        
+        box.addEventListener('click',function(e){
+            var e= e|| window.event;
+            if(e.target.tagName=='I'){
+                e.target.classList.toggle('checked');
+               
+                setchecked();
+            }
+        });
+
+        checkAll.onclick=function(){
+            // console.log(this.checked);
+            let files=document.querySelectorAll('.file');
+            files.forEach(function(item){
+                if(checkAll.checked){
+                    let checked=item.querySelector('i');
+                    checked.classList.add('checked');
+                    item.classList.add('fileActive');
+                }else{
+                    let checked=item.querySelector('i');
+                    checked.classList.remove('checked');
+                    item.classList.remove('fileActive');
+
+                }
+            })};
+        function setchecked(){
+            let I=document.querySelectorAll('.file>i');
+            for(var i=0;i<I.length;i++){
+                if(!I[i].classList.contains('checked')){
+                    checkAll.checked=false;
+                    return ;
+                }
+            }
+            checkAll.checked=true;
+        }
+        /*框选*/
+       /*
+       1.画框   2.
+       */
+        document.onmousedown=function(ev){
+            let selection=document.createElement('div');
+            var ev = ev || window.event;
+            selection.className="selection";
+           
+            let startClient={
+                x:ev.clientX,
+                y:ev.clientY
+            }; 
+            document.body.appendChild(selection);
+             let files=document.querySelectorAll('.file');
+            document.onmousemove=function(ev){
+                var ev = ev || window.event;
+                let nowClient={
+                    x:ev.clientX,
+                    y:ev.clientY
+                };
+                
+                selection.style.width=Math.abs(nowClient.x - startClient.x)+'px';
+                selection.style.height=Math.abs(nowClient.y - startClient.y)+'px';
+                selection.style.left=Math.min(nowClient.x , startClient.x)+'px';
+                selection.style.top=Math.min(nowClient.y , startClient.y)+'px';
+                files.forEach(function(item){
+                    let checked=item.querySelector('i');
+                    if(collision(item,selection)){
+                       
+                        checked.classList.add('checked');
+                        item.classList.add('fileActive');
+                        setchecked()
+                    }else{
+                        setchecked()
+                        checked.classList.remove('checked');
+                        item.classList.remove('fileActive');
+                    }
+                });
+             }
+             document.onmouseup=function(){
+                   document.onmousemove=document.onmouseup=null;
+                   document.body.removeChild(selection);
+               }   
+            return false;/*阻止默认行为,防止选中*/
+        }
+
+        /*碰撞检测*/
+        function collision(e1,e2){
+            let Rect=e1.getBoundingClientRect();
+            let Rect2=e2.getBoundingClientRect();
+           /*四种情况*/
+           /*
+           e1.top>e2.bottom
+           e1.bottom<e2.top
+           e1.left>e2.right
+           e1.right<e2.left
+           */
+            /**/
+            if(Rect.top>Rect2.bottom
+            ||Rect.bottom<Rect2.top
+            ||Rect.left>Rect2.right
+            ||Rect.right<Rect2.left){
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</body>
+</html>

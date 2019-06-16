@@ -1,0 +1,159 @@
+body,html,div,section,ul,li,a,span,input,form,h1,h2{
+    margin: 0;
+    padding: 0;
+}
+a{text-decoration: none;font-size: 14px;}
+li,ul,ol{list-style: none;}
+a:hover{color:rgb(243, 4, 24);}
+input{outline: none;}
+
+body{
+    border-top:solid 0.1px transparent;
+}
+.wrap{
+    width: 600px;
+    margin: 80px auto;
+}
+.wrap .title{
+    width: 100%;
+    height: 45px;
+    border-bottom: 2px solid #000;
+    position: relative;
+}
+.title h2{
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    height: 100%;
+    line-height: 45px;
+}
+.title #addBtn{
+    position: absolute;
+    right: 0px;
+    top:-5px;
+}
+.wrap .addArea{
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 2px solid #000;
+}
+.addArea input{
+    height: 24px;
+    cursor: pointer;
+}
+.addArea input[type="checkbox"]{
+    display: none;
+}
+.addArea input[type="checkbox"]:checked ~ .gender{
+    margin-left: 50%;
+}
+.addArea input[type="checkbox"]:checked ~ .gender .genderInner{
+    margin-left: -100%;
+}
+.addArea input[type="checkbox"]:checked ~ .stateData{
+    margin-left: 50%;
+}
+.addArea input[type="checkbox"]:checked ~ .stateData .stateInner{
+    margin-left: -100%;
+}
+.addArea .name,.age{
+    width: 70px;
+    text-align: center;
+    cursor: text !important;
+}
+.addArea label{
+    font-size: 13px;
+    height: 28px;
+    border:solid 1px rgb(177, 175, 175);
+    padding: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.addArea label span{
+    margin: auto;
+}
+.addArea .gender-label{
+    width: 48px;
+}
+.addArea .state-label{
+    width: 90px;
+}
+.addArea label .gender,.stateData{
+    width: 50%;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(78, 78, 78);
+    color: #fff;
+    transition: .3s;
+}
+.addArea label .genderInner,.stateInner{
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    transition: .3s;
+}
+#Entering{
+    width: 90px;
+    height: 28px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgb(143, 143, 143);
+    color:#fff;
+    border:none;
+}
+.filterTab{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    height: 26px;
+    line-height: 24px;
+    border-bottom: 2px solid #000;
+}
+.filterTab div a{
+    font-size: 12px;
+}
+.filterTab div a.active{
+    color:#ccc;
+}
+.staffInfo .list{
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
+}
+.list li,.listHead{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(161, 160, 160);
+}
+.list li input,.listHead input{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.list li div,.listHead div{
+    flex: 1;
+    text-align: center;
+}
+.wrap .controlArea{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+}
+.wrap .controlArea a{
+    text-align: center;
+    font-size: 12px;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        body{
+            background: #154852;
+        }
+        body,img,p,span,ul,li,ol,h1,h2,h3,h4,h5,h6{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        img{
+            vertical-align:top;
+            border: none;
+        }
+
+        .box{
+            width:1000px;
+            margin: 0 auto;
+            margin-top: 150px;
+        }
+        .div{
+            width: 450px;
+            height:270px;
+            float: left;
+            margin-left: 50px;
+            position: relative;
+        }
+        .div img{
+            display: inline-block;
+            width: 450px;
+            height: 270px;
+
+        }
+
+        .div span{top:0;}
+        .div p{bottom:0;}
+        .div p,.div span{
+            position: absolute;
+            left:0;
+            width:450px;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+            color:#fff;
+            background:#000;
+        }
+        .div ul{
+            width: 30px;
+            position: absolute;
+            top: 0px;right: -40px;
+        }
+        .div ul li{
+            width: 30px;
+            height: 30px;
+            margin-top: 5px;
+            background: #666;
+        }
+        .fff{background:#fff;}
+    </style>
+
+    <script type="text/javascript">
+        window.onload=function(){
+           zazakun('pic1',['img/1525939654.jpg','img/1525939716.jpg','img/1526523343.jpg','img/1526525797.jpg'],['第一张','第二张','第三张','第四张'],'onclick');
+           zazakun('pic2',['img/1525939716.jpg','img/1525939654.jpg','img/1526525797.jpg'],['第一张','第二张','第三张'],'onmouseover');
+       }
+
+        function zazakun(id,arrimg,arrtext,evt){
+            var Odiv=document.getElementById(id);
+            var Oimg=Odiv.getElementsByTagName('img')[0];
+            var Ospan=Odiv.getElementsByTagName('span')[0];
+            var Op=Odiv.getElementsByTagName('p')[0];
+            var Oul=Odiv.getElementsByTagName('ul')[0];
+            var num=0;
+            for(var i=0;i<arrimg.length;i++){
+                Oul.innerHTML += '<li></li>';
+            }
+            var Oli=Oul.getElementsByTagName("li");
+
+
+
+            function zzz(){
+                Oimg.src = arrimg[num];
+                Ospan.innerHTML=1+num+'/'+arrimg.length;
+                Op.innerHTML = arrtext[num];
+             for( var i=0; i<Oli.length; i++ ){
+                Oli[i].className = '';
+             }
+                Oli[num].className = 'fff';
+            }
+
+        zzz();
+
+        for( var i=0; i<Oli.length; i++ ){
+            Oli[i].index = i;
+            Oli[i][evt] = function (){
+            num = this.index;
+            zzz();
+            }
+        }
+
+
+}
+
+
+    </script>
+</head>
+
+<body>
+   <div class="box">
+        <div class="div" id='pic1'>
+            <img src="" alt="">
+            <span>数量加载中</span>
+            <p>文字加载中</p>
+            <ul></ul>
+        </div>
+
+          <div class="div" id='pic2'>
+            <img src="" alt="">
+            <span>数量加载中</span>
+            <p>文字加载中</p>
+            <ul></ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>混合版式</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">/*三种，一种浮动，一种定位相对和绝对 ，一种混合*/
+        .wrap{
+            width:900px;
+            height:300px;
+            margin:0 auto;
+        }
+        #left{
+            float:left;
+            width:200px;
+            height:300px;
+            background-color:#ccf;
+        }
+        #right{
+            width:700px;
+            height:300px;
+            padding-left:200px;         /*用margin-left也行*/
+            background-color:#fcc;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div id="left"></div>
+    <div id="right"></div>
+</div>
+
+</body>
+</html>

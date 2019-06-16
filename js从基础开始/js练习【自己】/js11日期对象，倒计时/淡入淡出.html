@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			#box{
+				width:1000px;
+				margin:0 auto;
+			}
+			.head{
+				width:300px;
+				height:200px;
+				background:#FF7F50;
+				margin:0 auto;
+				}
+			
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){	
+				
+				var obtn=document.getElementById('btn');
+				var ohead=document.getElementById('head');
+				var i=1;
+				var times=null;
+
+				obtn.onclick=function(){
+					clearInterval(times);
+					times=setInterval(function(){
+						var m=i/10;
+						i++;
+						ohead.style.opacity=m;
+						if(m==1){
+							clearInterval(times);
+							i=1;
+						}
+					},100);
+				}
+				
+				
+			}
+		</script>
+		
+	</head>
+	
+	<body>
+		<div id="box">
+			
+			<input type="button" value="点击" id="btn"/>
+			<div class="head" id="head">
+				
+			</div>
+			
+			
+		</div>
+		
+	</body>
+</html>

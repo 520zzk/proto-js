@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    #div1 a{
+        margin-left:10px;
+    }
+    </style>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+
+
+    page({
+        id:'div1',  /*对应容器*/
+        nowNum:8,   /*当前页数*/
+        allNum:10    /*总共页数*/
+    });
+
+function page(opt){
+    
+        if(!opt.id){return false}
+    
+        var obj=document.getElementById(opt.id);
+        var nowNum=opt.nowNum || 1;
+        var allNum=opt.allNum || 5;
+        if(nowNum>=4 && allNum>=6){ /*首页设置*/
+            var oA=document.createElement('a');
+            oA.href="#"+1;
+            oA.innerHTML="首页";
+            obj.appendChild(oA);
+        }
+        if(nowNum>1){       //*上一页设置*/
+            var oA=document.createElement('a');
+            oA.href="#"+(nowNum-1);
+            oA.innerHTML="上一页";
+            obj.appendChild(oA);
+        }
+
+        if(allNum<=5){      /*总页数没有超过5页的显示模式*/
+           
+            for(var i=1;i<=allNum;i++){
+                var oA=document.createElement('a');
+                oA.href="#"+i;
+                
+                if(nowNum==i){
+                    oA.innerHTML=i;
+                }else{
+                    oA.innerHTML='['+i+']';
+                }
+                obj.appendChild(oA);
+            }
+        }else{              /*总页数超过了五页的显示*/
+            for(var i=1;i<=5;i++){
+                var oA=document.createElement('a');
+                if(nowNum==1 ||nowNum==2){/*最开始的的前两页的处理*/
+                    oA.href="#"+i;
+                    if(nowNum==i){
+                        oA.innerHTML=i;
+                    }else{
+                        oA.innerHTML='['+i+']';
+                    }
+
+                }else if(allNum-nowNum==0 || allNum-nowNum==1){/*最后两页的处理*/
+                    oA.href='#'+(allNum-5+i);
+                    if((allNum-nowNum==1 && i==4)){
+                        oA.innerHTML=(allNum-5+i);
+                    }else if(allNum-nowNum==0 && i==5){
+                        oA.innerHTML=(allNum-5+i);
+                    }else{
+                        oA.innerHTML='['+(allNum-5+i)+']';
+                    }
+                  
+                }else{                          /*中间部分的处理*/
+                    oA.href="#"+(nowNum-3+i);
+                    if(i==3){
+                    oA.innerHTML=(nowNum-3+i);
+                    }else{
+                    oA.innerHTML='['+(nowNum-3+i)+']';
+                    }
+                }
+               
+                obj.appendChild(oA);
+
+            }
+
+            if(nowNum<allNum){      /*下一页设置*/
+            var oA=document.createElement('a');
+            oA.href="#"+(nowNum+1);
+            oA.innerHTML="下一页";
+            obj.appendChild(oA);
+            }
+            if(nowNum<=allNum-3 && allNum>6){   /*尾页设置*/
+            var oA=document.createElement('a');
+            oA.href="#"+allNum;
+            oA.innerHTML="尾页";
+            obj.appendChild(oA);
+            }
+
+        }
+        console.log('当前页'+nowNum+"总页数"+allNum);/*类似回调，这里可以添加会掉函数之类的*/
+        var arrA=obj.getElementsByTagName('a');
+       
+       for(var i=0;i<arrA.length;i++){/*每个A的点击切换*/
+        
+           arrA[i].onclick=function(){
+               var nowNum=parseInt(this.getAttribute('href').substring(1));
+                obj.innerHTML="";
+              page({
+                  id:'div1',
+                  nowNum:nowNum,
+                  allNum:allNum
+              });
+            //    return false;
+           }
+
+       }
+
+    }
+
+
+
+}
+</script>
+<body>
+    <div id="div1">        
+    </div>
+</body>
+</html>

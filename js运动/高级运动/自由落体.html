@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width:100px;
+            height:100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+    window.onload=function(){
+
+
+
+      var btn=document.getElementById('btn');
+      var div1=document.getElementById('div1');
+      var times=null;
+      var num=0;
+    btn.onclick=function(){
+        zzz();
+    }
+    function zzz(){
+        clearInterval(times);
+         times=setInterval(function(){
+            num+=3;
+          var T=div1.offsetTop+num;
+          if(T>document.documentElement.clientHeight-div1.offsetHeight){
+            T=document.documentElement.clientHeight-div1.offsetHeight;
+            num *= -1;
+            num=Math.ceil(num*0.75);
+            if(num==0){
+                clearInterval(times);
+            }
+            
+          }
+            console.log(num);
+            div1.style.top=T+"px";
+            
+        },1000/60);
+
+    }
+
+
+    }
+     
+    </script>
+</head>
+<body>
+    <input type="button" value="落体" id="btn">
+    <div id="div1">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    .box{border:1px solid red;position:absolute;}
+    .title{background:#999;color:white;height:30px;}
+    .close{float:right;width:30px;text-align:center;height:30px;line-height: 30px;cursor:pointer;}
+    .close:hover{background: red;}
+    </style>
+
+    <script type="text/javascript">
+    window.onload=function(){
+        var aBtn = document.getElementsByTagName("input");
+        aBtn[0].onclick=function(){
+            var d1= new dialog();
+            
+            d1.init({
+                W:400,
+                H:300,
+                title:"登陆",
+                dir:'center'
+            });
+            // console.log(d1);
+            
+        }
+        aBtn[1].onclick=function(){
+            var d2= new dialog();
+            
+            d2.init({
+                W:150,
+                H:300,
+                title:"告示",
+                dir:'right'
+            });
+        }
+
+    }
+
+    function dialog(){
+        this.box=null;
+        this.settings={
+            W:300,
+            H:300,
+            title:'',
+            dir:"center"
+        }
+    }
+
+    dialog.prototype.init=function(pro){
+        extend(this.settings , pro);
+        this.create();
+        this.RM();
+    }
+    dialog.prototype.create=function(){
+        this.box=document.createElement('div');
+        this.box.className="box";
+        this.box.innerHTML=`
+        <div class="title">
+            <span>${this.settings.title}</span>
+            <span class="close">X</span>
+        </div>
+        <div class="content">
+
+        </div>
+        `;
+        document.body.appendChild(this.box);
+        this.setData();
+
+    }
+    dialog.prototype.setData=function(){
+        this.box.style.width=this.settings.W+'px';
+        this.box.style.height=this.settings.H+'px';
+        if(this.settings.dir=='center'){
+            this.box.style.left=(DW()-this.settings.W)/2 + 'px';
+            this.box.style.top=(DH()-this.settings.H)/2 + 'px';
+        }else if(this.settings.dir=='right'){
+            this.box.style.left=(DW()-this.settings.W) + 'px';
+            this.box.style.top=(DH()-this.settings.H) + 'px';
+        }
+    }
+    dialog.prototype.RM=function(){
+        var close=this.box.getElementsByClassName('close')[0];
+        var This=this;
+        close.onclick=function(){
+            document.body.removeChild(This.box);
+        }
+    }
+
+    function extend(obj1,obj2){
+        for( attr in obj2){
+            obj1[attr]=obj2[attr]
+        }
+    }
+    function DW(){
+        return document.documentElement.clientWidth;
+    }
+    function DH(){
+        return document.documentElement.clientHeight;
+    }
+    </script>
+</head>
+<body>
+    <input type="button" value='弹窗一'>
+    <input type="button"" value='弹窗二'>
+    <input type="button" value='弹窗三'>
+    <!-- <div class="box">
+        <div class="title">
+            <span>登陆</span>
+            <span class="close">X</span>
+        </div>
+        <div class="content">
+
+        </div>
+    </div> -->
+</body>
+</html>

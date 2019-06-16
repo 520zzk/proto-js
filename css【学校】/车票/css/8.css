@@ -1,0 +1,49 @@
+/*
+* @Author: Marte
+* @Date:   2018-04-19 09:20:52
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-04-19 09:51:04
+*/
+ body{
+            margin:10px;
+        }
+        ul#tabnav{
+            list-style-type:none;
+            margin:0px;
+            padding-left:0px;
+            padding-bottom:23px;
+            border-bottom:1px solid #11a3ff;
+            font:bold 12px verdana,arial;
+        }
+        ul#tabnav li{
+            float:left;
+            height:22px;
+            background-color:#a3dbff;
+            margin:0 3px 0 0;
+            border:1px solid #11a3ff;
+        }
+        ul#tabnav a:link,ul#tabnav a:visited{
+            display: block;
+            color:#006eb3;
+            text-decoration:none;
+            padding:5px 10px 3px 10px;
+        }
+        ul#tabnav a:hover{
+            background-color:#006eb3;
+            color:#fff;
+
+        }
+        body#home li.home,body#news li.news,body#sports li.sports,body#music li.music,body#next li.next,body#blog li.blog{
+            border-bottom:1px solid #fff;
+            color:#000;
+            background-color: #fff;
+        }
+         body#home li.home a:link,body#news li.news a:link,body#sports li.sports a:link,body#music li.music a:link,body#next li.next a:link,body#blog li.blog a:link{
+            colo:#000000;
+            background-color:#fff;
+        }
+        body#home li.home a:hover,body#news li.news a:hover,body#sports li.sports a:hover,body#music li.music a:hover,body#next li.next a:hover,body#blog li.blog a:hover{
+
+            color:#006eb3;
+            text-decoration:underline;
+        }

@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<html >
+<head>
+	
+	<title>二级导航</title>
+	<link rel="stylesheet" href=""> 
+	<style type="text/css">
+   	body{
+   		width:1024px;
+   		margin:0 auto;
+   		font-size: 18px;
+   		line-height: 25px;
+   	}
+  	#nav ul{
+  		background:#958451;
+  		margin:0;
+  		height:50px;
+  		position: relative;
+  	}
+  	#nav ul li{
+  		
+  		float:left;
+  		list-style: none;
+  		width: 119px;
+  		height:91px;
+  		margin:15px 0 0 70px;
+
+  	}
+  	#nav ul li a{
+  		text-decoration:none;
+  		color:#652415;
+
+  	}
+  	#nav ul li ul{
+  		height:200px;
+  		margin-left: -40px;
+  		position:absolute;
+  		display: none;
+  		/*background-color: #548751;*/
+  	}
+  	#nav ul li ul li{
+  		float: none;
+  		margin:0px;
+  		padding:0px;
+  		height:50px;
+  		line-height: 50px;
+  	}
+
+  	#nav ul li ul li a{
+  		color:#212121;
+  	}
+   </style>
+
+   <script type="text/javascript">
+   	function about(zzz){
+   		var sub_ul=zzz.getElementsByTagName("ul");
+   		sub_ul[0].style.display="block";
+
+   	}
+   	function out(zzz){
+   		var sub_ul2=zzz.getElementsByTagName("ul");
+   		sub_ul2[0].style.display="none";
+   	}
+   </script>
+   	
+</head>
+
+<body>
+   <div id="nav">
+   		<ul>
+   			<li  onmouseover="about(this)" onmouseout="out(this)"><a href="#">首页</a>
+   					<ul class="ul2">
+					<li><a href="#" title="1">第一次</a></li>
+					<li><a href="#" title="2">第二次</a></li>
+					<li><a href="#" title="3">第三次</a></li>
+					<li><a href="#" title="4">第四次</a></li>
+				</ul>
+
+   			</li>
+   			<li onmouseover="about(this)" onmouseout="out(this)"><a href="#">公司简介</a>
+				<ul class="ul2">
+					<li><a href="#" title="1">第一次</a></li>
+					<li><a href="#" title="2">第二次</a></li>
+					<li><a href="#" title="3">第三次</a></li>
+					<li><a href="#" title="4">第四次</a></li>
+				</ul>
+   			</li>
+   			<li  onmouseover="about(this)" onmouseout="out(this)"><a href="">产品展示</a>
+					<ul class="ul2">
+					<li><a href="#" title="1">第一次</a></li>
+					<li><a href="#" title="2">第二次</a></li>
+					<li><a href="#" title="3">第三次</a></li>
+					<li><a href="#" title="4">第四次</a></li>
+				</ul>
+   			</li>
+   			<li  onmouseover="about(this)" onmouseout="out(this)"><a href="">联系我们</a>
+   					<ul class="ul2">
+					<li><a href="#" title="1">第一次</a></li>
+					<li><a href="#" title="2">第二次</a></li>
+					<li><a href="#" title="3">第三次</a></li>
+					<li><a href="#" title="4">第四次</a></li>
+				</ul>
+   			</li>
+   			<li  onmouseover="about(this)" onmouseout="out(this)"><a href="">招贤纳士</a>
+   					<ul class="ul2">
+					<li><a href="#" title="1">第一次</a></li>
+					<li><a href="#" title="2">第二次</a></li>
+					<li><a href="#" title="3">第三次</a></li>
+					<li><a href="#" title="4">第四次</a></li>
+				</ul>
+   			</li>
+   		</ul>
+   	
+   </div>
+	
+</body>
+</html>

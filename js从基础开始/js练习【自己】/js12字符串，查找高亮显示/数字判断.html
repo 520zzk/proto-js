@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    window.onload=function(){
+        var obtn=document.getElementsByTagName('input');
+       
+        obtn[1].onclick=function(){
+        var val=obtn[0].value;
+        if(detecNum(val)){
+            alert(val+"全是数字");
+        }
+        else{
+            alert(val+"不是数字");
+        }
+
+        }
+        function detecNum(str){
+            var m=0;
+            
+            for(var i=0;i<str.length;i++){
+             m=str.charCodeAt(i);
+            
+             if(m<48||m>57)
+             return false;
+            
+            }
+            return true;
+        }
+
+    }
+    </script>
+
+</head>
+<body>
+
+    <input type="text">
+    <input type="button" value="判断">
+</body>
+</html>

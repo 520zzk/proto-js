@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> </title>
+		<style type="text/css">
+			body,img,p,span,ul,li{
+				margin:0px;
+				padding:0px;
+				list-style:0px;
+			}
+			img{
+				vertical-align:top;
+				border:none;
+				
+			}
+			a{
+				text-decoration:none;
+			}
+			#box{
+				width:600px;
+				height:60px;
+				line-height:60px;
+				color:#FF7F50;
+				margin:0 auto;
+				border:2px solid #FF0000;
+				margin-top:50px;
+				font-size:25px;
+				text-align: center;
+			}
+		</style>
+		
+		<script tyoe="text/javascript">
+			window.onload=function(){
+				var Odiv=document.getElementById('box');
+				var times=null;
+				zzz();
+				function zzz(){
+					times=setInterval(
+					function(){
+				var myTime=new Date();
+				var Iyear=myTime.getFullYear();
+				var Imonth=myTime.getMonth()+1;
+				var Idate=myTime.getDate();
+				var Iweek=myTime.getDay();
+				var Ihour=myTime.getHours();
+				var Imin=myTime.getMinutes();
+				var Isec=myTime.getSeconds();
+				var str="";
+				
+				if(Iweek==0)Iweek="星期日";
+				if(Iweek==1)Iweek="星期一";
+				if(Iweek==2)Iweek="星期二";
+				if(Iweek==3)Iweek="星期三";
+				if(Iweek==4)Iweek="星期四";
+				if(Iweek==5)Iweek="星期五";
+				if(Iweek==6)Iweek="星期六";
+				
+				
+				str=Iyear+'年'+Imonth+'月 '+both(Idate)+'日 ' +Iweek+'  '+both(Ihour)+': '+both(Imin)+":"+both(Isec);
+				Odiv.innerHTML=str;
+					}
+				,1000);
+				}
+				
+				function both(arrt){
+					return arrt<10?'0'+arrt:arrt;
+				}
+				
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="box">
+		
+		</div>
+	</body>
+</html>

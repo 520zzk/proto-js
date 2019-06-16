@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				position:absolute;
+				display:block;
+				margin:30px 50px 30px;
+				width:200px;
+				left:0;
+				
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var Oimg=document.getElementById('img1');
+				
+				Oimg.onclick=function(){
+					
+					shake(Oimg,"left",function(){
+						shake(Oimg,"top");
+					});
+				}
+				
+				
+				function shake(obj,arrt,fun1){					//obj==对象  arrt=="left....等"   fun1==回调函数
+					var post=parseInt(getStyle(obj,arrt));
+					var arr=[];
+					var num=0;
+					var times=null;
+					
+					for(var i=20;i>0;i-=2){
+						arr.push(i,-i);
+					}
+					arr.push(0);
+					
+		
+					clearInterval(obj.shake);
+					obj.shake=setInterval(
+						function(){
+							obj.style[arrt]=post+arr[num]+'px';
+							num++;
+							if(num===arr.length){
+								clearInterval(obj.shake);
+								fun1&&fun1();
+							}
+							
+						}
+					,30);
+				}
+				
+				function getStyle(obj,arrt){
+					return obj.currentStyle?currentStyle[arrt]:getComputedStyle(obj)[arrt];
+				}
+			}
+		</script>
+	</head>
+	
+	
+	<body>
+		
+		<img src="img/4.jpg" id="img1"/>
+	</body>
+</html>

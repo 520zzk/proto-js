@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>时间走动</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+   <link type="text/javascript" href="js/time.js" />
+   <script type="text/javascript">
+
+   window.onload=function fun(){
+
+        var now=new Date();
+        var year=now.getFullYear();// 年份的获取
+        var month=now.getMonth()+1;//月份的获取
+        var date=now.getDate();//日期的获取
+        var day=now.getDay();//每周的日期获取
+        var hour=now.getHours();//小时
+        var minute=now.getMinutes();//分钟
+        var second=now.getSeconds();//秒
+
+        var a=["1","2","3","4","5","6","0",];
+        var b=["一","二","三","四","五","六","日",];
+
+        for(var i=0;i<7;i++)
+        {
+            if(day==a[i])
+                day=b[i];
+        }
+
+
+        (document.getElementById("header")).innerHTML="星期"+day;
+        (document.getElementById("day")).innerHTML= date;
+        (document.getElementById("nianyue")).innerHTML= year+""+"_"+month+"__"+hour+":"+minute+":"+second;
+
+        var mySet=setInterval(function()
+        {
+              fun();
+        }
+        ,1000);
+
+    }
+
+
+   </script>
+</head>
+<body>
+<div id="box">
+     <div id="header">星期一</div>
+
+     <div class="content">
+         <p id="day">19</p>
+     </div>
+
+     <div id="content1">
+         <p id="nianyue">2014.5 &nbsp<span>14:12:30</span></p>
+     </div>
+</div>
+
+</body>
+</html>

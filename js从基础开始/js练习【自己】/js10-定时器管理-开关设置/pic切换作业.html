@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片切换</title>
+		<style type="text/css">
+			body,div,img,ul,li,ol,p{
+				margin:0px;
+				height:0px;
+				list-style:none;
+			}
+			img{
+				vertical-align:top;
+				border:none;
+			}
+			#box{
+				width:500px;
+				height:300px;
+				margin:0 auto;
+				margin-top:50px;
+				position:relative;
+				overflow:hidden;			
+				}
+			#box img{
+				position:absolute;
+				/*display:none;*/
+				width:500px;
+				height:300px;
+				left:500px;
+			}
+			
+			#box  ul {
+				position:absolute;
+				bottom:0;
+				
+			}
+			#box  ul li{
+				position:absolute;
+				left:0px;
+				width:500px;
+				height:70px;
+				line-height:50px;
+				background:rgba(00,00,00,0.4);
+				z-index: 101;
+				color:#fff;
+				text-align:center;
+				
+			}
+		</style>
+		<script type="text/javascript" src="../javascript/Moblide.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var Obox=document.getElementById('box');
+				var Oli=Obox.getElementsByTagName('li');
+				var Oimg=Obox.getElementsByTagName('img');
+				var times=null;
+				var t=0;
+				zzz(0);
+				
+				function zzz(SB){
+					
+					
+				times=setInterval( function(){
+						
+				Moblide(Oimg[t],"left",20,-SB,
+				function(){
+					
+				Moblide(Oli[t],'top',2,-70,
+					function(){
+					
+						Moblide(Oli[t],'top',2,70,);
+//						Moblide(Oimg[t],"left",5,500);
+
+						t++;
+						//Oimg[t].style.left="500px";
+						console.log(t);
+						if(t==Oimg.length){
+						
+						
+//								
+								for(var j=0;j<t;j++){
+									
+								Oimg[j].style.left=500+"px";
+								
+								}
+							t=0;
+						
+						}
+					}
+					);
+					
+				});
+					
+					
+				},3600);
+			
+				}
+			
+			}
+		</script>
+	</head>
+	
+	
+	
+	<body>
+		
+		<div id="box">
+			<img src="img/黑崎一护.jpg" />
+			<img src="img/初音未来.jpg" alt="" />
+			<img src="img/虚化.jpg" alt="" />
+			<img src="img/龙猫.jpeg" alt="" />
+			
+			<ul>
+				<li>黑崎一护是死神</li>
+				<li>初音未来是一个网络虚拟歌手</li>
+				<li>虚化是日本的一个动漫人物</li>
+				<li>龙猫是宫崎骏下的作品之一</li>
+				
+				
+			</ul>
+		</div>
+	</body>
+</html>

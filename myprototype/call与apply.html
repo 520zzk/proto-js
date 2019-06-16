@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+        function fruits() {} 
+fruits.prototype = {
+color:"red",
+say: function() {console.log(this.color);}
+}
+var apple = new fruits();
+ 
+apple.say();
+var banana = {color:"yellow"};
+apple.say.call(banana);
+apple.say.apply(banana);
+
+
+
+
+var scopeTest = (function(){ //考察了 this 的含义
+window.a=2;
+function fn(b){
+this.b = b;
+console.log(this.a);
+}
+var obj = {a:4,fn:fn};
+fn();   //2
+obj.fn();   //4
+fn.call(obj);   //4
+fn.call(null);  //2 
+fn.apply(obj);  //4
+fn.apply(null); //2
+var fninstance = new fn(8);
+console.log(fninstance.b);
+})();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

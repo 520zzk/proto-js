@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    #div1{width:100px;height:100px;background:red;position:absolute;}
+    #div2{width:100px;height:100px;background:pink;position:absolute;left:150px;}
+    #div3{width:100px;height:100px;background:yellowgreen;position:absolute;left:300px;}
+    </style>
+    <script type="text/javascript">
+
+        window.onload=function(){
+    
+           var d1=new DUM();
+           d1.init('div1');
+
+           var d2=new DUM();
+           d2.init('div2');
+
+           addEvent(d2,'todown',function(){           
+               document.title="xxx";          
+           });
+
+           var d3=new DUM();
+           d3.init('div3');
+           
+           addEvent(d3,'toup',function(){           
+            document.title="beybey";
+      
+       });
+
+       addEvent(d3,'todown',function(){           
+            document.body.style.background = "rgba(15,51,250,0.1)";
+      
+       });
+         
+       addEvent(d1,'to',function(){           
+            document.body.style.background = "rgba(150,0,150,0.1)";
+      
+       });
+         
+            
+        }
+
+        function DUM(obj){
+            this.div=null;
+            this.Dx=0;
+            this.Dy=0;
+    
+        }
+        DUM.prototype.init=function(id){
+            
+            if(id==undefined){
+                console.dir(this);
+                console.log('id不能为空');
+                
+                return;
+            }
+            this.div=document.getElementById(id);
+            this.json.push(this.div);
+            var This =this;
+            this.div.onmousedown=function(ev){
+                
+                var ev = ev || window.event;
+                This.fndown(ev);
+                zidong(This,'todown');      //因为有个if判断，所有不会有未定义情况
+                zidong(This,'to');
+            
+            document.onmousemove=function(ev){
+                var ev = ev || window.event;
+                This.fnmove(ev);
+            }
+            document.onmouseup=function(){
+                This.fnup();
+                zidong(This,'toup');
+               
+            };
+
+
+
+               return false;
+
+
+            }
+        }
+        DUM.prototype.fndown=function(ev){
+            this.Dx=ev.clientX-this.div.offsetLeft;
+            this.Dy=ev.clientY-this.div.offsetTop;
+            
+           
+            this.div.style.zIndex=4;
+        }
+        DUM.prototype.json=[];
+
+        DUM.prototype.fnmove=function(ev){
+                    
+                    var Nx=ev.clientX-this.Dx;
+                    var Ny=ev.clientY-this.Dy;
+                    this.div.style.left=Nx + 'px';
+                    this.div.style.top=Ny + 'px';
+                }
+        DUM.prototype.fnup=function(){
+                document.onmousemove=document.onmouseup=null;
+                for(var i=0;i<this.json.length;i++){
+                this.json[i].style.zIndex=1;
+                }
+                this.div.style.zIndex=4;
+               }
+        
+        function addEvent(obj,events,fn){
+
+            obj.zzk= obj.zzk || {};
+            obj.zzk[events] = obj.zzk[events] || [];
+            obj.zzk[events].push(fn);
+
+            if(obj.nodeType){
+                if(obj.addEventListener){
+
+                    obj.addEventListener(events,fn,false);
+                }
+                if(obj.attachEvent){
+                    obj.attachEvent('on'+events,fn);
+                }
+
+            }
+
+        }
+
+        function zidong(obj,events){
+            if(obj.zzk && obj.zzk[events]){
+                for(var i=0;i<obj.zzk[events].length;i++){
+                obj.zzk[events][i]();
+
+            }
+            }
+         
+        }
+
+      
+        
+        </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+</html>

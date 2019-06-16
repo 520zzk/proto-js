@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>老妖韩冬雪</title>
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding:0px;
+            list-style:none;
+        }
+        img{
+            vertical-align:top;
+        }
+        .box{
+            width:800px;
+            height:500px;
+            top:10%;
+            left:25%;
+            position:absolute;
+            /* background:pink; */
+        }
+    
+        .box ul{
+            position:relative;
+        }
+        .box ul li img{
+            position:absolute;
+        }
+        .left{
+            width:50px;
+            position:absolute;
+            top:280px;
+            z-index:4;
+            opacity:0.6;
+        }
+        .right{
+            width:50px;
+            position:absolute;
+            top:280px;
+            left:750px;
+            z-index:4;
+            opacity:0.6;
+        }
+        .left:hover,.right:hover{
+            opacity:1;
+            cursor:pointer;
+        }
+        .box ul li:nth-child(1) img{
+            left:0px;
+            top:230px;
+            opacity:0.3;
+            z-index:1;
+        }
+        .box ul li:nth-child(2) img{
+           
+            left:30px;
+            top:200px;
+            opacity:0.9;
+            z-index:2;
+        }
+        .box ul li:nth-child(3) img{
+           
+            left:135px;
+            top:150px;
+            opacity:1;
+            z-index:3;
+        }
+        .box ul li:nth-child(4) img{
+            left:450px;
+            top:200px;
+            opacity:0.9;
+            z-index:2;
+        }
+        .box ul li:nth-child(5) img{
+           
+            top:230px;
+            left:530px;
+            opacity:0.3;
+            z-index:1;
+        }
+    </style>
+    <script src="starMove.js"></script>
+</head>
+<body>
+    <div class="box">
+            <img src="./image/left.png" alt="" class="left" onclick="move('left')">
+            <img src="./image/right.png" alt="" class="right" onclick="move('right')">
+        <ul id="ul">
+            <li><a href="javascript:;"><img src="./image/1.jpg" alt="" style="height:150px;width:266px"></a></li>
+            <li><a href="javascript:;"><img src="./image/2.jpg" alt="" style="height:200px;width:258px"></a></li>
+            <li><a href="javascript:;"><img src="./image/3.jpg" alt="" style="height:300px;width:535px"></a></li>
+            <li><a href="javascript:;"><img src="./image/4.jpg" alt="" style="height:200px;width:320px"></a></li>
+            <li><a href="javascript:;"><img src="./image/5.jpg" alt="" style="height:150px;width:270px"></a></li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+
+var Oli=document.getElementById('ul').getElementsByTagName('li');
+var arr=[];
+var arrImg=document.getElementById('ul').getElementsByTagName('img');//获取所有图片
+var times=null;
+
+for(var i=0;i<arrImg.length;i++){   //记录最开始的每个图片的信息，存入数组中
+        arr.push([ parseInt(getStyle(arrImg[i],"left")),parseInt(getStyle(arrImg[i],"top")),getStyle(arrImg[i],"opacity")*100,getStyle(arrImg[i],"zIndex",),arrImg[i].height,arrImg[i].width]);
+    }
+function move(f){   //点击事件，左右判断执行  写在了行内
+    f=="left"?zzz('left'):zzz("right");
+    time(); //执行完后再次循环
+}
+time(); //开启循环
+
+function time(){
+    clearInterval(times);    //先清除，避免定时器的
+    times=setInterval(function(){
+        zzz("left");
+    },2000);
+}
+function zzz(t){    //动画执行函数
+    if(t=="left"){  
+        arr.push(arr.shift());  //把第一项放到数组后
+    }else{
+          arr.unshift(arr.pop());   //否则把最后一项放入数组第一个
+    }
+    for(var i=0;i<arrImg.length;i++){   //数组已经变化，循环
+        var oimg=Oli[i].getElementsByTagName('img')[0]; //每次循环时，获取li下中的图片，每次循环获取一个，第一次获取第一个，依次往后推
+        startMove(oimg,{        //把图片传入处理，给图片传入改变后的位置等关系
+            left:arr[i][0],     //注意看 i 的位置，arr是一个二维数组，
+            top:arr[i][1],
+            opacity:arr[i][2],
+            height:arr[i][4],
+            width:arr[i][5]
+         });
+         oimg.style.zIndex=arr[i][3];   //层级的关系时一直不变的，数组怎样改变层级都不该变，保准图片移动后，1的层级还是1 ...
+    }
+}
+
+function getStyle(obj,attr){    //获取样式的的通用函数
+    if(obj.currentStyle){
+        return obj.currentStyle[attr];
+    }else{
+        return getComputedStyle(obj,false)[attr];
+    }
+}
+</script>
+</html>

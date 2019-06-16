@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    #box{
+        width:400px;
+        height:400px;
+        position:relative;
+        left:300px;
+        top:300px;
+       transform-style:preserve-3d;
+        animation: zzk 3s; 
+        animation-iteration-count: infinite;
+    }
+     @keyframes zzk{
+        0%{
+            transform: rotateX(45deg) rotateY(45deg);
+        }
+        100%{
+            transform: rotateX(-45deg) rotateY(-45deg);
+        }
+    } 
+    #box div{
+        width:200px;
+        height:200px;
+        line-height:200px;
+        position:absolute;
+        text-align: center;
+        font-size:36px;
+        opacity:0.7;
+
+
+    }
+   #box div:nth-child(1){
+       transform:translateZ(0px);
+       background: rgb(56, 182, 56);
+   }
+   #box div:nth-child(2){
+       transform:translateZ(200px);
+       background: pink;
+   }
+   #box div:nth-child(3){
+      
+       transform-origin: left center;
+        transform:translateX(100%) rotateY(-90deg);
+       background: rgb(34, 50, 196);
+   }
+   #box div:nth-child(4){
+    transform-origin: right center;
+       transform:translateX(-100%) rotateY(90deg);
+       background: rgb(193, 196, 21);
+   }
+   #box div:nth-child(5){
+    transform-origin: top center;
+       transform:translateY(100%) rotateX(90deg);
+       background: rgb(128, 19, 95);
+   }
+   #box div:nth-child(6){
+    transform-origin: bottom center;
+       transform:translateY(-100%) rotateX(-90deg);
+       background: rgb(206, 44, 198);
+   }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</body>
+
+</html>

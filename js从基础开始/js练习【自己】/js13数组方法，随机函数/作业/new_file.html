@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+<style>
+
+*{ margin: 0; padding: 0;  }
+a{ text-decoration: none; }
+
+p{ 
+    width: 500px;
+    height: 300px;
+   
+    float: left;
+    text-indent: 2em;
+}
+
+.con{ height: 330px; }
+#btns{ float: left; width: 70px; margin-left: 16px; height: 30px; overflow: hidden	; }
+#btns a,#btns span{     
+    width: 70px;
+    height: 30px;
+    background: #673AB7;
+    float: left;
+    color: #fff;
+    text-align: center;
+    line-height: 30px; 
+}
+#btns span:hover{
+    cursor: pointer;
+}
+#btns .ac:hover{     
+    background: #34146d;
+    padding-top: 2px;
+    height: 28px; 
+}
+
+
+#inputWrap{ 
+    width: 410px;
+    height: 108px;
+    position: relative;
+    /*display: none;*/
+}
+#btnDiv{     
+    width: 100%;
+    height: 30px; 
+    border-bottom: 3px solid #9C27B0;
+}
+#btnDiv a{     
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+    color: #333;
+    font-weight: bold;
+    background: #cbafd0;
+}
+
+#btnDiv a:hover,#btnDiv .active2{ background: #9C27B0; color: #fff; }
+
+
+.bar{
+    width: 400px;
+    border: 3px solid #9C27B0;
+    border-top: none;
+    padding: 20px 0 20px 4px;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    z-index: 1;
+}
+.bar input{ outline: none; font-size: 14px; }
+
+
+.bar input[type="button"]{
+    width: 80px;
+    height: 28px;
+}
+
+
+.bar input[type="text"]{
+    width: 146px;
+    height: 28px;
+}
+
+#btnDiv #close{    
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #dbdbdb;
+    color: #999;
+}
+
+#btnDiv #close:hover{ color: #010101; }
+#box{
+	width:600px;
+	margin:0 auto;
+	margin-top:50px;
+}
+</style>
+
+</head>
+<body>
+<div id="box">
+<div class="con">
+    
+    <p id="content">
+    妙味课堂是北京妙味趣学信息技术有限公司旗下的IT培训品牌。
+    创办多年来我们一直恪守住IT培训的原则与底限，扎扎实实研发课程、不断提升服务质量，
+    在公司需求和学员进度中巧妙把握平衡，帮助学员打下坚实技术基础，不断向各大IT公司输送优秀开发人才！
+
+    2007年12月07日 - “妙味课堂” 品牌名称和网站域名 “www.miaov.com” 诞生；
+    2008年05月14日 - 研发完成 “XHTML+CSS2精品课程”，第二年后，妙味第一版网站上线；
+    2010年09月06日 - 研发完成 “JavaScript实战课程”，并配合2010年新官网上线，同时对外发布；
+
+    2011年至2013年，妙味课堂精准研发出领先行业的 “HTML5&CSS3课程”，并配合2013年最新官网同时对外发布；
+    2014年至今，妙味课堂重磅推出超值的“VIP会员”收费服务，并配合优良的IT培训资源、成熟的远程课堂方案，
+    彻底打通线上线下环节，为广大学习爱好者提供了一个更加便捷、有效、实用的IT学习方案！
+    </p>
+
+    <div id="btns">
+        <span href="javascript:;" style="margin-bottom: 14px;">展开</span>
+        <a href="javascript:;" class="ac">查找</a>
+        <a href="javascript:;" class="ac">替换</a>
+    </div>
+
+</div>
+
+
+<div id="inputWrap">
+    <div id="btnDiv">
+        <a href="javascript:;">查找</a>
+        <a href="javascript:;">替换</a>
+        <a href="javascript:;" id="close">X</a>
+    </div>
+
+    <div class="bar">
+        <input type="text" />
+        <input type="button" value="查找" />
+    </div>
+    <div class="bar">
+        <input type="text" />
+        <input type="text" />
+        <input type="button" value="替换" />
+    </div>
+
+</div>
+
+</div>
+
+
+</body>
+</html>

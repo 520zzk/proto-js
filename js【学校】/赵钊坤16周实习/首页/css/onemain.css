@@ -1,0 +1,150 @@
+body,img,span,a,p,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+a{
+	text-decoration:none;
+}
+img{
+	border:none;
+	vertical-align:top;
+}
+body{
+	position:relative;
+}
+#header{
+	width:100%;
+	height:42px;
+	background-image:url(../image/hd-bg.png);
+	position:absolute;
+	top:-42px;
+}
+.header-box,.ct-box,.foot{
+	width:979px;
+	margin:0 auto;
+}
+.header-left{
+	width:520px;
+	height:42px;
+	float:left;
+}
+.header-sp{
+	display:inline-block;
+	width:220px;
+	height:41px;
+	background-image:url(../image/ost-bg.png);
+	background-position:0px -42px;
+}
+.header-left img{
+	margin-top:1px;
+	margin-left:-3px;
+}
+.header-right{
+	float:right;
+	width:230px;
+	height:41px;
+	line-height:41px;
+}
+.header-right p{
+	width:77px;
+	font-size:12px;
+	float:left;
+}
+.header-sp2,.header-sp3{
+	float:left;
+	width:18px;
+	height:18px;
+	margin-top:10px;
+	display:inline-block;
+}
+.header-p{
+	margin-left:10px;
+}
+.header-sp2{
+	background-image:url(../image/logo.png)	;
+}
+.header-sp3{
+	background-image:url(../image/ost-bg.png);
+	background-position:-150px 	-130px;
+}
+#content{
+	width:100%;
+	height:860px;
+	background:url(../image/1528700192.jpg)no-repeat;
+}
+
+.ct-box{
+	position:relative;
+}
+.ct-box2{
+	position:absolute;	
+	width:635px;
+	height:298px;
+	top:516px;
+	left:190px;
+}
+.video{
+	width:450px;
+	height:298px;
+	float:left;
+	margin-left:-910px;				/*video的初始位置*/
+}
+.ct-box3{
+	height:300px;
+	width:185px;
+	float:right;
+}
+.ct-01 a,.ct-02 a,.ct-03 a,.ct-04 a{
+	display:block;
+	width:183px;
+	height:70px;
+}
+.ct-01{
+	width:183px;
+	height:90px;
+	background:url(../image/base.png);
+	background-position:0 -10px;
+	
+	margin-left:609px;
+}
+.ct-02,.ct-03,.ct-04{
+	width:183px;
+	height:70px;
+	
+	margin-left:609px;
+}
+.ct-02{
+	background:url(../image/base.png);
+	background-position:0 -100px;
+}
+.ct-03{
+	background:url(../image/base.png);
+	background-position:0 -170px;
+}
+.ct-04{
+	background:url(../image/base.png);
+	background-position:0 70px;
+}
+#footer{
+	width:100%;
+	height:75px;
+	background:#282725;
+}
+.foot-left{
+	width:290px;
+	height:74px;
+	background:url(../image/foot-dark.png) no-repeat;
+	background-position:0 15px;
+	float:left;
+}
+.foot-right{
+	width:675px;
+	float:right;
+	margin-top:20px;
+}
+.foot-right p{
+	font-size:12px;
+	color:#8c8c8c;
+	margin-top::;px;
+}

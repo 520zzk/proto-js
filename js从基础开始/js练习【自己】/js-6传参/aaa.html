@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" >
+        body,div,p,img,a,ul,li,ol,h1,h2,h3,h4,h5,h6{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+
+        }
+        img{
+            vertical-align: top;
+            border: none;
+        }
+        #box{
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .ulo li{
+            margin-top: 15px;
+        }
+        .ulo span{
+           display: inline-block;
+           width: 20px;
+           text-align: center;
+        }
+        .ulo p{
+            display: inline;
+        }
+        #Odiv{
+            margin-top: 20px;
+        }
+         #Odiv em{
+            margin-left: 15px;
+         }
+    </style>
+
+    <script type="text/javascript">
+        window.onload=function(){
+            var aUL=document.getElementById('ulu');
+            var aLi=aUL.getElementsByTagName('li');
+            var sum=0;var sum2=0;
+            var listdiv=document.getElementById('Odiv');
+            var listspan=listdiv.getElementsByTagName('span')[0];
+            var listem=listdiv.getElementsByTagName('em')[0];
+            var listp=listdiv.getElementsByTagName('p')[0];
+
+         function LI1(zzz){
+            var aput=zzz.getElementsByTagName('input');
+            var aspan=zzz.getElementsByTagName('span')[0];
+            var aem=zzz.getElementsByTagName('em')[0];
+            var ap=zzz.getElementsByTagName('p')[0];
+            var a=Number(aspan.innerHTML);
+            var b=parseFloat(aem.innerHTML);
+
+            aput[0].onclick=function(){
+                 a--;
+                 if(a<0){
+                    a=0;
+                }
+                aspan.innerHTML=a;
+                ap.innerHTML=a*b +'元';
+                sb(b);
+            }
+              aput[1].onclick=function(){
+                 a++;
+                aspan.innerHTML=a;
+                ap.innerHTML=a*b +'元';
+                sb(b);
+            }
+
+                        function sb(xxx){
+                             var m=0;var n=0; var t=0;
+
+                           for(var i=0;i<aLi.length;i++){
+                            var aspan=aLi[i].getElementsByTagName('span')[0];
+                            var aem=aLi[i].getElementsByTagName('em')[0];
+                            var ap=aLi[i].getElementsByTagName('p')[0];
+
+                            m+=Number(aspan.innerHTML);
+                            n+=parseFloat(ap.innerHTML);
+
+                            if(Number(aspan.innerHTML)>0){
+                                if(parseFloat(aem.innerHTML)>t)
+                                {
+                                    t=parseFloat(aem.innerHTML);
+                                }
+                            }
+
+
+                        }
+                        sum=m;
+                        sum2=n;
+                        listspan.innerHTML="商品合计共"+sum+'件';
+                        listem.innerHTML="共花费了"+sum2+'元';
+                        listp.innerHTML="购买最贵的商品单价是"+t+"元";
+                     }
+
+
+
+
+        }
+        for(var i=0;i<aLi.length;i++){
+            LI1(aLi[i]);
+
+         }
+
+    }
+    </script>
+
+</head>
+<body>
+
+    <div id="box">
+        <ul class="ulo" id="ulu">
+        <li>
+            商品一：
+            <input type="button" value="-">
+            <span>0</span>
+            <input type="button" value="+">
+            单价：<em>45.5元</em>
+            合计：<p>0元</p>
+        </li>
+
+        <li>
+            商品二：
+            <input type="button" value="-">
+            <span>0</span>
+            <input type="button" value="+">
+            单价：<em>25.5元</em>
+            合计：<p>0元</p>
+        </li>
+
+        <li>
+            商品三：
+            <input type="button" value="-">
+            <span>0</span>
+            <input type="button" value="+">
+            单价：<em>28元</em>
+            合计：<p>0元</p>
+        </li>
+
+        <li>
+            商品四：
+            <input type="button" value="-">
+            <span>0</span>
+            <input type="button" value="+">
+            单价：<em>30元</em>
+            合计：<p>0元</p>
+        </li>
+        </ul>
+
+        <div id="Odiv">
+            <span>商品合计共0件</span><em>共花费了0元</em>
+            <p>购买最贵的商品单价是0元</p>
+
+        </div>
+    </div>
+</body>
+</html>

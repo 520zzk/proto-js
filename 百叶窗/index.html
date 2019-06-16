@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    *{
+        margin:0px;padding:0px;list-style:none;
+    }
+    #ul,#ul1{width:300px;height:auto;float:left;border-top:1px #000 solid;margin:20px;}
+    li{width:100%;height:30px;overflow:hidden;position:relative;
+    border-bottom:1px #333 dashed;line-height:30px;}
+     li div{position:absolute;top:-30px;}
+     li div p{height:30px;}
+    
+    </style>
+    <script src="starMove.js"></script>
+</head>
+<body>
+    <ul id="ul"> 
+        <li>
+            <div>
+                <p>111111111111111</p>
+                <p>222222222222222</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>33333333333333333</p>
+                <p>44444444444444444</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>5555555555555555</p>
+                <p>6666666666666666</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>7777777777777777</p>
+                <p>8888888888888888</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>33333333333333333</p>
+                <p>44444444444444444</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>9999999999999999</p>
+                <p>aaaaaaaaaaaaaaaa</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>bbbbbbbbbbbbbbbbb</p>
+                <p>cccccccccccccccccc</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>qqqqqqqqqqqqqqqq</p>
+                <p>wwwwwwwwwwwwwwww</p>
+            </div>
+        </li>
+
+    </ul>
+    <ul id="ul1"> 
+        <li>
+            <div>
+                <p>111111111111111</p>
+                <p>222222222222222</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>33333333333333333</p>
+                <p>44444444444444444</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>5555555555555555</p>
+                <p>6666666666666666</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>7777777777777777</p>
+                <p>8888888888888888</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>33333333333333333</p>
+                <p>44444444444444444</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>9999999999999999</p>
+                <p>aaaaaaaaaaaaaaaa</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>bbbbbbbbbbbbbbbbb</p>
+                <p>cccccccccccccccccc</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <p>qqqqqqqqqqqqqqqq</p>
+                <p>wwwwwwwwwwwwwwww</p>
+            </div>
+        </li>
+
+    </ul>
+</body>
+<script type="text/javascript">
+var ul=document.getElementById('ul');
+var ul1=document.getElementById('ul1');
+var times=null;var time=null;
+
+//  show(ul);
+//     setTimeout(function(){
+//     show(ul1);
+// },1500);
+
+function show(obj){
+    var arrDiv=obj.getElementsByTagName('div');
+    var num=0;var t=true;
+    
+    obj.time=setInterval(function(){
+      
+      console.log(obj);
+       times=setInterval(function(){
+          
+            if(num>arrDiv.length-1){
+                clearInterval(times);
+                num=0;
+                t=!t;
+            }else{
+                startMove(arrDiv[num],{top:t?0:-30});
+                num++;
+            }
+           
+        },100);
+    },3000);
+
+ 
+  }
+
+ window.onblur=function(){
+           clearInterval(ul.time);
+           clearInterval(ul1.time);
+           clearInterval(times);
+         }
+ window.onfocus=function(){
+    show(ul);
+    setTimeout(function(){
+    show(ul1);
+},1500);
+}
+</script>
+</html>

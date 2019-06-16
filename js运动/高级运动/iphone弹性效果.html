@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>iPhone手机图片查看器 - 妙味课堂 - www.miaov.com</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script>
+window.onload = function(){
+	var ul=document.getElementById('ul1');
+    var ali=ul.getElementsByTagName('li');
+    var lix=0;
+    var downX=0;
+    var num=0;
+    ul.onmousedown = function(ev){
+     
+        var ev = ev || window.event;
+        lix=ev.clientX-ul.offsetLeft;
+        downX=ev.clientX;
+        clearInterval(times);
+        document.onmousemove=function(ev){
+            var ev = ev || window.event;
+            ul.style.left=ev.clientX-lix+'px';
+        }
+        document.onmouseup=function(ev){
+            document.onmousemove=null;
+            document.onmouseup=null;
+            var ev = ev || window.event;
+            if(ev.clientX<downX){
+                // console.log("左");
+                if(num != ali.length-1){
+                    num++;
+                }
+                startMove(-num*ali[0].offsetWidth);
+               
+                
+            }else{
+                // console.log("右");
+                if(num !=0){
+                    num--;
+                }
+                startMove(-num*ali[0].offsetWidth);
+            }
+        }
+          return false; 
+    }
+
+    var times=null;
+    var ispeed=0;
+    function startMove(iTarget){
+        clearInterval(times);
+        times=setInterval(function(){
+            ispeed +=(iTarget-ul.offsetLeft)/6;
+            ispeed *=0.75;  
+        if(Math.abs(ispeed)<1 && Math.abs(iTarget-ul.offsetLeft)<1){
+            clearInterval(times);
+            ispeed=0;
+            ul.style.left=iTarget+'px';
+        }else{
+            ul.style.left=ul.offsetLeft+ispeed+'px';
+        }
+           
+        },1000/60);
+    }
+
+
+};
+</script>
+</head>
+
+<body>
+
+<div id="iphone" >
+	<div id="wrap">
+		<ul id="ul1">
+			<li style="background:url(images/pic1.png);" title="妙味课堂"></li>
+			<li style="background:url(images/pic2.png);" title="妙味课堂"></li>
+			<li style="background:url(images/pic3.png);" title="妙味课堂"></li>
+			<li style="background:url(images/pic4.png);" title="妙味课堂"></li>
+		</ul>
+	</div>
+</div>
+
+</body>
+</html>

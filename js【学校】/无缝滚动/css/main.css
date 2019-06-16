@@ -1,0 +1,24 @@
+*{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+img{
+	border:none;
+	vertical-align:top;
+}
+a{
+	text-decoration:none;
+}
+#box{
+	width:800px;
+	height:600px;
+	margin:0 auto;
+	overflow:hidden;
+	background:#121221;
+	position:relative;
+
+}
+#div1,#div2{
+	position:absolute;
+}

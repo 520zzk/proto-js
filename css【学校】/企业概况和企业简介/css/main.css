@@ -1,0 +1,125 @@
+/*
+* @Author: Marte
+* @Date:   2018-05-15 09:09:18
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-05-15 13:09:32
+*/
+body,div,img,ul,li,ol,p,a,h1,h2,h3,h4,h5,h6{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+img{
+    border:none;
+    vertical-align: middle;
+}
+a{
+	text-decoration: none;
+	
+}
+body{
+    width:1138px;
+    height:820px;
+    margin:0 auto;
+}
+.header{
+    height:123px;
+    background:url(../image/logobg.png);
+    position:relative;
+
+}
+.headright{
+	float:right;
+	margin:40px 30px 0 0;
+}
+.ul{
+	/*position:absolute;*/
+	margin-top:-25px;
+	margin-left:300px;
+}
+
+.ul li{
+	float:left;
+}
+.ul li:hover{
+	background: #000;
+	color:#fff;
+	cursor:pointer;
+}
+.li1{
+	margin-left:15px;
+}
+.li2{
+	margin-left:15px;
+}
+.banner{
+	margin-top:5px;
+	height:181px;
+}
+.centent{
+	clear:both;
+	height:500px;
+
+}
+.centent .left{
+	height:500px;
+	width:15%;
+	float:left;
+}
+.centent .right{
+	height:500px;
+	width:85%;
+	float:left;
+}
+.ul2{
+	margin-top:10px;
+}
+
+.ul2 li{
+	width:160px;
+	height:44px;
+	line-height: 44px;
+	text-align:center;
+	/*background:#e9e9e9;*/
+	border-bottom: solid #999999 1px;
+	cursor:pointer;
+}
+
+.ul2 li:hover{
+	background:#000;
+	color:#fff;
+	font-weight:800;
+	display: block;
+}
+
+
+.zhishi{
+	background-image:url(../image/bg.gif);
+	width:100%;
+	height:41px;
+}
+.zhishi p{
+	float:left;
+	height:41px;
+	line-height:41px;
+	margin-left:10px;
+	color:#ff9968;
+	font-weight:bold;
+}
+.zhanshi{
+	float:left;
+	width:968px;
+	height:346px;
+	/*display: none;*/
+}
+.zhanshi p{
+	font-size: 14px;
+	text-indent:2em;
+	margin-top:15px;
+	line-height:20px;
+}
+.zhanshi img{
+	float:right;
+	margin:15px 0 5px 15px;
+	
+}

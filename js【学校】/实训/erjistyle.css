@@ -1,0 +1,144 @@
+*{
+    padding:0;
+    margin:0;
+    list-style: none;
+}
+body{
+    background-color:#f4f4f4;
+
+}
+a{
+    text-decoration:none;
+}
+.header{
+    width:1280px;
+    height:335px;
+    margin:0 auto;
+
+}
+.zhinan{
+    height:239px;
+}
+.zhinan img{
+    width:103px;
+    height:40px;
+    float:right;
+}
+.zhinan img:hover{
+	border:2px solid #FFFF00;
+}
+.t1{
+    margin-right:92px;
+    margin-top:15px;
+}
+ .t2{
+    margin-right:15px;
+    margin-top:15px;
+}
+.logo{
+    width:281px;
+    height:63px;
+    display:block;
+    float:left;
+    margin-top:100px;
+    margin-left:500px;
+    margin-bottom:76px;
+}
+.clearfix:after{
+    height:0;
+    line-height:0;
+    content:'';
+    clear:both;
+    display:block;
+    visibility:hidden;
+
+}
+.nav_bg{
+    background-color:#f4f4f4;
+    height:52px;
+    line-height:52px;
+    width:1028px;
+    text-align:center;
+    margin:0 auto;
+
+
+}
+
+.nav>ul>li{
+    float:left;
+}
+.nav ul li a{
+    text-align:center;
+    font-size:20px;
+    margin-left:32px;
+    margin-right:28px;
+    color:black;
+}
+.nav ul li:hover{
+	font-size:22px;
+	margin-top:-5px;
+	background: #B1EABB;
+	}
+
+.content{
+    width:1280px;
+    margin:0 auto;
+}
+.content img:hover{
+	border:3px solid #ED4828;
+}
+.banner1,.banner2,.banner3{
+    width:1028px;
+    height:305px;
+    display:block;
+    margin:0 auto;
+}
+.banner2{margin-top:20px;}
+.banner3{margin-top:30px;}
+
+.base{
+    width:1280px;
+    height:270px;
+    margin:0 auto;
+    background-color:#dcdbdb;
+    position:relative;
+}
+.base ul{
+    color:#4e4e4e;
+    font-size:20px;
+    float:left;
+    margin-left:110px;
+    margin-top:50px;
+    letter-spacing:2px;
+    line-height:25px;
+
+}
+.base ul li{
+    font-size:16px;
+    letter-spacing: 2px;
+    line-height:25px;
+}
+.base ul a{
+	color:#4e4e4e;
+}
+.base ul li:hover{
+	font-size:14px;
+}
+.dibu{
+ 	float:right;
+ 	margin-top:150px;
+ 	margin-right:20px;
+   right:320px;
+}
+.zuihou{
+position:absolute;
+left:800px;
+top:50px;
+}
+.zuihou p{
+    font-size:20px;
+    color:#4e4e4e;
+    margin-top:20px;
+   line-height:25px;
+    margin-bottom:15px;
+} 

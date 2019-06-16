@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片滚动</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding:0px;
+            list-style:none;
+        }
+        #box{
+            height:110px ;
+         width:900px;
+         margin:0 auto;
+         margin-top:50px;
+         line-height:110px;
+         position:relative;
+        }
+        #left{
+            background-image:url(image/btn.jpg);
+            display:inline-block;
+            width:70px;
+            height:70px;
+            margin-right:5px;
+            background-position:68px 0;
+        }
+        #div1{
+            position:absolute;
+            width:712px;
+            height:108px;
+
+        }
+        #div1 ul {
+            width:2136px;
+            height:110px;
+            margin-left:-712px;             /*此处十分重要，为防止往右移动是，左边出现空白*/
+
+        }
+        #div1 ul li{
+
+            float:left;
+        }
+        #right{
+        	background-image: url(image/btn.jpg);
+             display:inline-block;
+            position:absolute;
+            width:70px;
+            height:70px;
+            right:40px;
+            top:15px;
+        }
+        #td{
+            display:inline-block;
+            width:712px;
+            height:108px;
+            position:absolute;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td id="left">
+
+            </td>
+            <td id="td" >
+                <div id="div1" >
+                  <ul>
+                    <li><img src="image/1.jpg"></li>
+                    <li><img src="image/2.jpg"></li>
+                    <li><img src="image/3.jpg"></li>
+                    <li><img src="image/4.jpg"></li>
+                    <li><img src="image/1.jpg"></li>
+                    <li><img src="image/2.jpg"></li>
+                    <li><img src="image/3.jpg"></li>
+                    <li><img src="image/4.jpg"></li>
+                    <li><img src="image/1.jpg"></li>
+                    <li><img src="image/2.jpg"></li>
+                    <li><img src="image/3.jpg"></li>
+                    <li><img src="image/4.jpg"></li>
+
+                  </ul>
+                </div>
+
+            </td>
+            <td id="right">
+
+            </td>
+
+
+        </tr>
+    </table>
+</div>
+</body>
+<script type="text/javascript">
+    var divO=document.getElementById('div1');           
+    var leftO=document.getElementById('left');          
+    var rightO=document.getElementById('right');
+    var left=0; 
+    var myset=null;
+        leftO.onmouseover=function(){               //onmouseover点击事件
+            yileft();
+        }
+        rightO.onmouseover=function(){
+            yiright();
+        }
+    function yileft(){                          //往左边移动
+         clearInterval(myset);                  /*进入前的清除*/
+        left-=5;                                /*按五个像素移动，往左left为负值*/
+        divO.style.left=left+"px";              
+        if(left<-712){                          /*判断是否出界，出界拉回*/
+            left=0;
+
+            setleft();                          /*调用定时器*/
+        }
+         setleft();                         
+    }
+    function yiright(){                     /*往右边移动*/
+             clearInterval(myset);
+            left+=5;                            /*往右边left为正值*/
+            divO.style.left=left+"px";
+            if(left>712){
+                left=0;
+                setright();
+            }
+             setright();
+        }
+    function setright(){            /*右边定时器*/
+        clearInterval(myset);
+        myset=setInterval(yiright,50);
+            }
+    function setleft(){             /*左边定时器*/
+       clearInterval(myset);
+        myset=setInterval(yileft,50);
+
+    }
+
+
+
+</script>
+</html>

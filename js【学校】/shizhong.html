@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>时钟</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        .shz{
+            width:150px;
+            height:150px;
+            background-color:#148652;
+            margin:0 auto;
+        }
+        h3{
+            width:80px;
+            margin:0 auto;
+            font-size:25px;
+        }
+        #tou{
+            height:30px;
+            background-color:#985421;
+        }
+        h1{
+            width:80px;
+            height:80px;
+            margin:0 auto;
+           text-align: center;
+            font-size:60px;
+        }
+        h5{
+            width:120px;
+            margin:0 auto;
+            height:30px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            function shzh(){
+
+            var now= new Date();
+            var weekday=now.getDay();		//获取一周内的某一天
+            var date=now.getDate();			//获取一月中的某一天
+            var year=now.getFullYear();		//获取年份
+            var month=now.getMonth()+1;		//获取月份
+            var hour=now.getHours();		//获取小时
+            var minute=now.getMinutes();	//获取分钟
+            var second=now.getSeconds();	//获取秒
+
+            var a=["1","2","3","4","5","6","0"];
+            var b=["一","二","三","四","五","六","日"];
+            for(var i=0;i<=a.length;i++)
+            {
+            	
+                if(a[i]==weekday.toString())
+                    weekday=b[i];
+                  
+               
+            }
+             document.getElementById("ddd").innerHTML ="星期"+ weekday;
+
+             document.getElementById("riqi").innerHTML = date;
+             document.getElementById("shijian").innerHTML = year+ "."  + month +"&nbsp&nbsp&nbsp"  +  hour+":" + minute +":"+ second ;
+      
+        }
+        setInterval(function(){ shzh();},  1000);
+
+    }
+    </script>
+</head>
+<body>
+    <div class="shz" >
+
+
+    <div id="tou">
+        <h3 id="ddd">星期一</h3>
+    </div>
+    <div>
+        <h1 id="riqi">19</h1>
+    </div>
+    <h5 id="shijian">2014.5 14:12:30</h5>
+     </div>
+</body>
+</html>

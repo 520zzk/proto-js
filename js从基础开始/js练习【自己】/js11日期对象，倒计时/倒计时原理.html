@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				margin:0 auto;
+				width:800px;
+			}
+			#box span{
+				color:#154872;
+				font-size:18px;
+			}
+			#in1,#in2{
+				width:250px;
+				height:20px;
+			}
+			#in3{
+				margin-left:150px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var t=0;
+				var str="";
+				var times=null;
+				var	Odiv=document.getElementById('box');
+				var Oinput=Odiv.getElementsByTagName('input');
+				
+				Oinput[2].onclick=function(){
+					var pastTime=new Date(Oinput[0].value);
+				
+				times=setInterval(function(){
+					var newTime=new Date();
+					if(pastTime.getTime()>newTime.getTime()){
+						
+					t=Math.floor((pastTime-newTime)/1000);
+					
+					str=Math.floor(t/86400)+'天'+ Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+					Oinput[1].value=str;
+					}else{
+						Oinput[1].value="请大于当前时间或请在英文状态下输入";
+						clearInterval(times);
+					}
+					
+				},1000);
+				
+				
+			}
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="box">
+		<p><span>距离时间：</span><input type="text" placeholder="格式：2013 10 27  00:00:00" id="in1"/></p>
+		<p><span>倒计时间：</span><input type="text" id="in2"/></p>	
+		<input type="button" value="开始倒计时" id="in3"/>
+		</div>
+	
+	</body>
+</html>

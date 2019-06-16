@@ -1,0 +1,160 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>妙味课堂-JS4课练习-游戏：你的鼠标有多快？</title>
+<style>
+body { background:#f1f1f1; font-family:微软雅黑; font-size:16px; user-select: none; }
+#box { width:800px; height:450px; border:1px solid #066; background:#FFF; margin:20px auto 0; position:relative; top:0; left:0; }
+#show { width:130px; border:1px solid #066; position:absolute; top:-1px; left:-152px; background:#FFC; padding:10px; }
+#show p { width:130px; margin:0; font-family:微软雅黑; font-size:16px; line-height:30px; }
+
+#head { text-align:center; }
+#qq{
+	width:800px;
+	height:450px;
+	position:relative;
+}
+</style>
+
+<script>
+	
+	function getId(id) {
+    return document.getElementById(id)
+}
+
+function getTag(parent, tag) {
+    return parent.getElementsByTagName(tag);
+}
+
+function doMove(obj, attr, dir, target, endFn) {
+    dir = parseInt(getStyle(obj, attr)) < target ? dir : -dir;
+    clearInterval(obj.timer);
+    obj.timer = setInterval(function () {
+        var speed = parseInt(getStyle(obj, attr)) + dir;
+        if (speed > target && dir > 0 || speed < target && dir < 0) {
+            speed = target
+        }
+        obj.style[attr] = speed + 'px';
+        if (speed == target) {
+            clearInterval(obj.timer);
+            endFn && endFn()
+        }
+    }, 30)
+}
+
+function getStyle(obj, attr) {
+    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr]
+}
+
+function shake(obj, attr, endFn) {
+    if (obj.onOff) return;
+    obj.onOff = true;
+    var pos = parseInt(getStyle(obj, attr));
+    var arr = [];
+    var num = 0;
+    var timer = null;
+    for (var i = 12; i > 0; i -= 2) {
+        arr.push(i, -i)
+    }
+    arr.push(0);
+    clearInterval(obj.shake);
+    obj.shake = setInterval(function () {
+        obj.style[attr] = pos + arr[num] + 'px';
+        num++;
+        if (num === arr.length) {
+            clearInterval(obj.shake);
+            endFn && endFn();
+            obj.onOff = false
+        }
+    }, 50)
+}
+
+
+window.onload = function () {
+
+    var arrQQ = ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png', 'img/6.png', 'img/7.png', 'img/8.png', 'img/9.png', 'img/10.png', 'img/11.png'];
+  	var obtn=getTag(document,"input")[0];
+  	var odwp1=getTag(getId('show'),'p')[0];
+  	var odwp2=getTag(getId('show'),'p')[1];
+  	var odq=getId("qq");
+  	var obox=getId("box");
+  	var score=0;
+  	var pass=0;
+  	var speed=5;
+  	
+  	obtn.onclick=ShowTime;	/*加括号便成为立即执行*/
+  		
+  		function ShowTime(){
+  		obtn.disabled=true;
+  		obtn.value="游戏进行中...";
+  		var L=Math.round(Math.random()*780);
+  		var x=Math.round(Math.random()*10);
+  		console.log(L,x);
+  		odq.innerHTML="<img style='position:absolute;left:"+L+"px;top:0px;cursor:pointer;' src='"+arrQQ[x]+"'/>";
+  		var oimg=getTag(odq,'img');
+  		//console.log(oimg);
+  		doMove(oimg[0],'top',speed,430,function(){
+  			++pass
+  			if(pass<10){
+  				odwp2.innerHTML='失分：'+pass+"分";
+  				oimg[0].style.display="none";
+  				shake(obox,"top");
+  				ShowTime();/*还得调用*/
+  			}else{
+  				shake(obox,"top",function(){
+  					alert('游戏结束，请重新开始');
+  				});
+  				speed=5;
+  				odwp1.innerHTML="得分为0分";
+  				odwp2.innerHTML="失分为0分";
+  				odq.innerHTML='';
+  				obtn.value="开始游戏";
+  				pass=0;score=0;	obtn.disabled=false;
+  				}
+  			});
+  			oimg[0].onmousedown=function(){
+  				 clearInterval(this.timer);
+  				oimg[0].src="img/qq.png";
+  				shake(oimg[0],'left',function(){
+  					oimg[0].style.display="none";
+  					ShowTime();
+  				});
+  				if(score<8)++speed;
+  				
+  				odwp1.innerHTML="得分："+(++score)+"分";
+  				
+  			}
+  		}
+
+  		
+  	
+  	
+  	}
+
+
+    
+
+</script>
+</head>
+
+<body>
+
+<div id="head">
+	<h2>你的鼠标有多快？</h2>
+  <p>游戏说明：点击“开始游戏”，随机掉下QQ表情，点中它，千万别让它掉下去！！失掉十分重新开始</p>
+  <input type="button" value="开始游戏" />
+</div>
+
+<div id="box">
+	<div id="show">
+  	<p>得分：0 分</p>
+  	<p>失分：0 分</p>
+ 	 </div>
+  <div id="qq">
+  		
+  </div>
+</div>
+
+</body>
+</html>

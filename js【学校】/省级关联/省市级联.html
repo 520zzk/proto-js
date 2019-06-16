@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>省市级联</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="zzz.js"></script>
+
+</head>
+<body>
+    <div class="box">
+       <form action="" method="post" accept-charset="utf-8" class="form">
+            <div class="box1">
+               <span>请选择省份：</span>
+          <select id="province" onChange="selectProvince()">
+              <option value="" >请选择省份</option>
+          </select>
+            </div>
+            <div class="box1">
+                <span>请选择城市：</span>
+          <select id="city" onChange="showinfo()">
+              <option value="">请选择城市</option>
+
+          </select>
+            </div>
+
+        </form>
+
+        <div class="xinxi">
+            我在: <span id="xinxi"></span>
+        </div>
+</body>
+</html>

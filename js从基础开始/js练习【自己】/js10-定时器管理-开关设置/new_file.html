@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+			position:absolute; 
+			width:100px;
+			height:100px;
+			margin-top:15px;
+			left:10px;
+			background:red;}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var oBin1=document.getElementById('btn1');
+				var oBin2=document.getElementById('btn2');
+				
+				var oDiv=document.getElementById('div1');
+				
+			
+				oBin1.onclick=function(){
+					
+					Moblide(oDiv,"left",20,500);
+				}
+				
+				oBin2.onclick=function(){
+					
+					Moblide(oDiv,"left",20,10);
+				}
+				function Moblide(obj,attr,rate,fanwei){
+					rate=parseInt(getStyle(obj,attr))>fanwei?-rate:rate;
+					 clearInterval(obj.times);
+				
+					obj.times=setInterval(
+						function(){
+
+						var speed=parseInt(getStyle(obj,attr))+rate;
+						
+						if(speed<fanwei&&rate<0){	//向后
+							speed=fanwei;
+						}
+						if(speed>fanwei&&rate>0){	//向前
+							speed=fanwei;
+						}
+						obj.style[attr]=speed+'px';
+						if(speed==fanwei ){			//停止
+							clearInterval(obj.times);
+							
+						}
+						
+						}
+						
+					,30);
+				}
+				
+				function getStyle(obj,attr){
+					return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+					/*currentStyle只兼容IE...getComputedStyle只兼容谷歌等，不兼容IE*/
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<input type="button" value="往后" id="btn2"/>
+		
+		<input type="button" value="往前" id="btn1"/>
+		<div id="div1"></div>
+	</body>
+</html>

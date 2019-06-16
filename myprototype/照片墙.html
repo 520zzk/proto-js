@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    *{margin:0px;padding:0px;}
+    img{border:0px;vertical-align:top;}
+    .ul{width:960px;margin: 30px auto;position:relative;}
+    .ul li{list-style:none;float:left;margin:10px;width:300px;height:200px;}
+    .ul li img{width:300px;height:100%;}
+    </style>
+</head>
+<body>
+    <ul class="ul">
+        <li><img src="./1.jpg" alt=""></li>
+        <li><img src="./2.jpg" alt=""></li>
+        <li><img src="./3.jpg" alt=""></li>
+        <li><img src="./4.jpg" alt=""></li>
+        <li><img src="./5.jpg" alt=""></li>
+        <li><img src="./6.jpg" alt=""></li>
+        <li><img src="./7.jpg" alt=""></li>
+        <li><img src="./8.jpg" alt=""></li>
+        <li><img src="./9.jpg" alt=""></li>
+    </ul>
+</body>
+<script src="./move.js"></script>
+<script type="text/javascript">
+    var aImg=document.getElementsByClassName('ul')[0].getElementsByTagName('li');
+    var arr=[];
+    var zindex=2;
+    for(var i=0;i<aImg.length;i++){
+        arr.push([aImg[i].offsetLeft,aImg[i].offsetTop]);   /*存入数组里面位置信息*/
+    }
+    for(var i=0;i<aImg.length;i++){
+        aImg[i].style.position="absolute";
+        aImg[i].style.left=arr[i][0]+'px';
+        aImg[i].style.top=arr[i][1]+'px';
+        aImg[i].style.margin=0;
+    }
+    for(var i=0;i<aImg.length;i++){
+        aImg[i].index=i;    /*给每个图片添加索引，方便去对照数组中的位置信息*/
+        drag(aImg[i]);      
+    }
+
+    function drag(obj){
+        var disX=0;
+        var disY=0;
+        obj.onmousedown=function(ev){
+            var ev = ev || window.event;
+            disX=ev.clientX-obj.offsetLeft;
+            disY=ev.clientY-obj.offsetTop;
+            obj.style.zIndex=zindex++;  /*让所点击图片永远处于最上层*/
+        
+            document.onmousemove=function(ev){
+                var ev = ev || window.event;
+                obj.style.left=ev.clientX-disX +"px";
+                obj.style.top=ev.clientY-disY +"px";
+
+                for(var i=0;i<aImg.length;i++){     /*类似选项卡*/
+                    aImg[i].style.border='';
+                }
+                var pzjc=objPz(obj);    /*把移动的对象处理，选出最近的*/
+               if(pzjc){            /*如果有碰撞，必定有一个最近的*/
+                pzjc.style.border="2px solid red";
+               }
+
+            }
+            document.onmouseup=function(){
+                document.onmousemove=document.onmouseup=null;
+                var tmp=0;
+                var pzjc=objPz(obj);   
+                if(pzjc){   /*位置交换，通过索引去数组中找位置信息*/
+                     startMove(pzjc,{left:arr[obj.index][0], top:arr[obj.index][1]});
+                     startMove(obj,{left:arr[pzjc.index][0], top:arr[pzjc.index][1]});
+                     pzjc.style.border="";
+                    tmp=obj.index;  /*索引交换*/
+                    obj.index=pzjc.index;
+                    pzjc.index=tmp;
+                   }else{   /*没有碰撞，则原路返回*/
+                    startMove(obj,{left:arr[obj.index][0], top:arr[obj.index][1]});
+                   }
+               
+            }
+            return false;
+        }
+    }
+
+
+    function objPz(obj){    /*移动过程的处理*/
+        var num=99999;      /*替代品*/
+        var index=-1;
+        for(var i=0;i<aImg.length;i++){     /*通过循环去查找碰撞结果*/
+            if(pz(obj,aImg[i]) && obj!=aImg[i]){    /*把移动对象和所有对象进行比较*/
+                var c=gudn(obj,aImg[i]);        /*处理移动对象和碰撞对象的位置关系*/
+               if(c<num){           /*替换处理获取最近的碰撞对象的索引*/
+                    num=c;
+                    index=i;
+               }
+            }
+
+        }
+        if(index!=-1){  
+            return aImg[index];
+
+        }else{
+            return false;
+        }
+
+    }
+
+    function gudn(obj1,obj2){  /*勾股定理算出最近位置*/
+        var a=obj1.offsetLeft-obj2.offsetLeft;
+        var b=obj1.offsetTop-obj2.offsetTop;
+        return Math.sqrt(a*a+b*b);
+
+    }
+
+    function pz(obj1,obj2){
+        var l1=obj1.offsetLeft;
+        var r1=obj1.offsetLeft+obj1.offsetWidth;
+        var t1=obj1.offsetTop;
+        var b1=obj1.offsetTop+obj1.offsetHeight;
+
+        var l2=obj2.offsetLeft;
+        var r2=obj2.offsetLeft+obj2.offsetWidth;
+        var t2=obj2.offsetTop;
+        var b2=obj2.offsetTop+obj2.offsetHeight;
+        if(l1>r2 || r1<l2 || t1>b2 || b1 <t2){
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+</html>

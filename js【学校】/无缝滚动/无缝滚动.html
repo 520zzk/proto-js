@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>无缝滚动</title>
+	<link rel="stylesheet" href="css/main.css">
+	<style type="text/css">
+		#box{
+		margin-top:50px;
+	}
+	</style>
+</head>
+<body>
+	<div id="box" >
+		
+		<div id="div1" onmouseover="tingzhi()" onmouseout="chonglai()">
+			<img src="image/0-1.jpg" alt="" />
+			<img src="image/0-2.jpg" alt="" />
+			<img src="image/0-1.jpg" alt="" />
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	/*
+	思路：
+		增加或者减少div1的Top值让移动
+		判断offset top是否在第三张////决定拉回
+		定时与清除
+
+	 */
+	var Odiv=document.getElementById('div1');
+	var Oimgs=Odiv.getElementsByTagName('img');
+	var dis=0;
+	var myset=null;
+	function yidong(){
+		dis-=8;
+		Odiv.style.top=dis+"px";
+		if(-(Odiv.offsetTop)>1200){
+			dis=0;
+			
+			setmove();
+		}
+	}
+	setmove();
+	function setmove(){
+		clearInterval(myset);
+		myset=setInterval(yidong,30);
+	}
+	function tingzhi(){
+		clearInterval(myset);
+	}
+	function chonglai(){
+		setmove();
+	}
+</script>
+</html>

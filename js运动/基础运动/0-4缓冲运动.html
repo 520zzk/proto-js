@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 100px; height: 100px; background: rgb(255, 111, 111); position: absolute; left: 600px; top: 100px;}
+
+</style>
+<script>
+//统一
+window.onload = function() {
+	
+	var oDiv1 = document.getElementById('div1');
+    var time=null;
+   
+    oDiv1.onclick=function(){
+        clearInterval(time);
+        var sudu=0;
+        time=setInterval(function(){
+            sudu=(500-oDiv1.offsetLeft)/8;
+          
+           sudu=sudu>0 ? Math.ceil(sudu) : Math.floor(sudu);
+          
+          if(oDiv1.offsetLeft==500){
+           
+            clearInterval(time);
+          }else{
+            oDiv1.style.left=oDiv1.offsetLeft+sudu+"px";
+          }
+           
+        },1000/60);
+
+    }
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+		body{
+			background: #cccccc;
+			
+		}
+		div{
+			padding:0;
+			border:0;
+		}
+		.one{
+			background:#ffffff;
+			width:400px;
+			height:400px;
+			border:1px inset #000000;
+		}
+		.t1{
+			
+			width:160px;
+			height:100px;
+			background:#333333;
+			
+		}
+		.t2{
+			
+			width:160px;
+			height:60px;
+			background:#333333;
+			
+		}
+		.t3{
+			width:100px;
+			height:100px;
+			background:#333333;
+			
+			
+			
+
+		}
+		.t5{
+			width:100px;
+			height:100px;
+			background:#333333;		
+			margin:1px 0 0 1px;
+		
+		}
+		.t4{
+			color: #ffffff;
+			margin-left: 11px;
+		}

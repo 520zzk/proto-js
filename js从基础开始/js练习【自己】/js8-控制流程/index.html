@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,div,span,ul,li,img{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			img{
+				vertical-align:top:
+				border:none;
+			}
+			.box{
+				width:500px;
+				height:100px;
+				margin:0 auto;
+				margin-top:150px;
+				position:relative;
+				border:1px solid #125487;
+			}
+			.box span{
+				font-size:14px;
+				display: inline-block;
+				margin-top:15px;
+				margin-left:5px;
+			}
+			.ulu{
+				width:125px;
+				height:30px;
+				line-height:30px;
+				position:absolute;
+				top:5px;
+				left:75px;
+				
+			}
+			#Odiv{
+				width:60px;
+				height:40px;
+				position:absolute;
+				top:5px;
+				left:200px;
+				color:coral;
+				
+			}
+			.imgO{
+				width: 200px;
+				position:absolute;
+				right:50px;
+				top:5px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				
+				var Oul=document.getElementById('ulu');
+				var Odiv=document.getElementById('Odiv');
+				var Oimg=Oul.getElementsByTagName('img');
+				var arrimg=["img/1.png","img/2.png","img/3.png","img/3.png","img/3.png"];
+				var arrdiv=["很差","差","还行","推荐","力荐"];
+				var imgO=document.getElementById('imgO');
+				var t=0;
+				for(var i=0;i<arrdiv.length;i++){
+					
+					Oul.innerHTML+="<img src='img/1.png'></img>"
+					
+				}
+				
+				
+			
+				
+				for(var i=0;i<arrdiv.length;i++){
+					Oimg[i].index=i;
+					
+					
+					Oimg[i].onmouseover= function zzz(){
+						
+						imgO.style.cssText="display: none;"
+						
+						for(var j=0;j<arrdiv.length;j++)
+						{
+							Oimg[j].src=arrimg[0];
+							Odiv.innerHTML='';
+						}
+						switch (this.index){
+							case 0:
+								{	
+									
+										Oimg[0].src=arrimg[1];
+										Odiv.innerHTML=arrdiv[0];
+										break;
+								}
+							case 1:
+							{	
+								for(var j=0;j<this.index+1;j++){
+										Oimg[j].src=arrimg[1];
+										Odiv.innerHTML=arrdiv[j];
+										
+									}break;
+							}
+							case 2:
+							{
+								for(var j=0;j<this.index+1;j++){
+										Oimg[j].src=arrimg[2];
+										Odiv.innerHTML=arrdiv[j];
+									}break;
+							}
+							case 3:
+							{
+								for(var j=0;j<this.index+1;j++){
+										Oimg[j].src=arrimg[2];
+										Odiv.innerHTML=arrdiv[j];
+									}break;
+							}
+							
+							default:
+							{
+								for(var j=0;j<this.index+1;j++){
+										Oimg[j].src=arrimg[2];
+										Odiv.innerHTML=arrdiv[j];
+									}break;
+							}
+								
+						}
+			
+					
+
+					
+					}	
+					
+					
+			
+					
+					
+					Oimg[i].onmouseout= function xxx(){	
+					imgO.style.cssText="display: block;"
+			
+					}
+				
+			}
+			
+			}
+		</script>
+	</head>
+	
+	
+	<body>
+		<div class="box">
+			 <span>总体评价：</span>
+			 <ul class="ulu" id="ulu">
+			 	
+			 </ul>
+			 <div id="Odiv">
+			 
+			 </div>
+			 <img src="img/图层 326.png" class="imgO" id="imgO"/>
+		</div>
+		
+	</body>
+</html>

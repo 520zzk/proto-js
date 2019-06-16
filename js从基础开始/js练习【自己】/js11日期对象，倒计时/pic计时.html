@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> </title>
+		<style type="text/css">
+			body,img,p,span,ul,li{
+				margin:0px;
+				padding:0px;
+				list-style:0px;
+			}
+			img{
+				vertical-align:top;
+				border:none;
+				
+			}
+			a{
+				text-decoration:none;
+			}
+			#box{
+				width:800px;
+				height:300px;
+				margin:0 auto;
+				border:2px solid #FF0000;
+				margin-top:50px;
+				text-align: center;
+				position:relative;
+			}
+			#box p{
+				position:absolute;
+				width:670px;
+				height:60px;
+				line-height:60px;
+				top:85px;
+				left:63px;
+				background:#159357;
+				color:#fff;
+				font-size:35px;
+			}
+			#box img{
+				margin-top:150px;
+				width:80px;
+				
+			}
+		</style>
+		
+		<script tyoe="text/javascript">
+			 window.onload=function(){
+				var Op=document.getElementById('oP');
+				var Odiv=document.getElementById('box');
+				var Oimg=Odiv.getElementsByTagName('img');
+				var times=null;
+				zzz();
+				function zzz(){
+					times=setInterval(function(){
+				var myTime=new Date();
+				var Iyear=myTime.getFullYear();
+				var Imonth=myTime.getMonth()+1;
+				var Idate=myTime.getDate();
+				var Iweek=myTime.getDay();
+				var Ihour=myTime.getHours();
+				var Imin=myTime.getMinutes();
+				var Isec=myTime.getSeconds();
+				var str="";
+				var str2="";
+				if(Iweek==0)Iweek="星期日";
+				if(Iweek==1)Iweek="星期一";
+				if(Iweek==2)Iweek="星期二";
+				if(Iweek==3)Iweek="星期三";
+				if(Iweek==4)Iweek="星期四";
+				if(Iweek==5)Iweek="星期五";
+				if(Iweek==6)Iweek="星期六";
+				
+				
+				str=Iyear+'年'+Imonth+'月'+Idate+'日   '+Iweek;
+				Op.innerHTML=str;
+				str2=both(Ihour)+':'+both(Imin)+':'+both(Isec);
+				
+				for(var i=0;i<Oimg.length;i++){
+					
+					if(str2.charAt(i)!=':'){
+						Oimg[i].src='img/'+str2.charAt(i)+'.jpg';
+					}
+					else Oimg[i].src=Oimg[2].src;
+				}
+					}
+				,1000);
+				}
+				
+				function both(arrt){
+					return arrt<10?'0'+arrt:arrt;
+				}
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div id="box">
+		<p id="oP">xxxx年xx月xx日</p>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG"/>
+		<img src="img/0.JPG"/>
+		<img src="img/0.JPG"/>
+		</div>
+	</body>
+</html>

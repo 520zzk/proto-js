@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width:400px;
+				height:400px;
+				border:1px solid #000000; 
+			}
+			#box span{
+				display: inline-block;
+				width:20px;
+				height:20px;
+				line-height:20px;
+				text-align: center;
+				margin-top:5px;
+				margin-left:5px;
+				
+			}
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var odiv=document.getElementById('box');
+				var obtn=document.getElementsByTagName('input');
+				var str='';
+				var arrcolor=["red","pink","bisque","brown"];
+				var arrword=[];
+				obtn[1].onclick=function(){
+					var str2="";
+					str = obtn[0].value;
+					arrword=str.split("");
+					for(var i=0;i<arrword.length;i++){
+						str2+="<span style='background:"+arrcolor[i%arrcolor.length]+";'>"+arrword[i]+"</span>";
+					}
+					odiv.innerHTML=str2;	
+				}
+				
+			}
+		</script>
+	</head>
+	
+	
+	<body>
+		<div id="box">
+			
+		</div>			
+		<input type="text" name="" id="" value="" />
+		<input type="button" name="" id="" value="提交" />
+	</body>
+</html>

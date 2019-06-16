@@ -1,0 +1,51 @@
+/*
+* @Author: 海苑小阁
+* @Date:   2018-05-02 13:36:30
+* @Last Modified by:   海苑小阁
+* @Last Modified time: 2018-05-03 14:24:38
+*/
+body,div,ul,li,span{
+	margin:0;
+	padding:0;
+	outline-style: none;
+}
+.box{
+	width:600px;
+	height:400px;
+	border:2px #000 solid;
+	margin:0 auto;
+}
+.xuan1{
+	width:600px;
+	height:30px;
+	font-size:16px;
+}
+.xuan1 li{
+	float:left;
+	display: inline;
+	line-height: 30px;
+	width:100px;
+	height:30px;
+	text-align: center;
+	background: #90c;
+	margin-left: 5px;
+	cursor:pointer;
+}
+.box .on{
+	background-color: #fff;
+	color: #854624;
+}
+.nr{
+	text-align: left;
+	background-color: #033;
+	color: #fff;
+	line-height: 24px;
+	height:370px;
+}
+}
+.xianshi{
+	display: block;
+}
+.yincang{
+	display:none;
+}

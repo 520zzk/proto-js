@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 原型模式,不管是否调用了原型中的共享方法,它都会初始化原型中的方法;
+// 并且在声明一个对象时,构造函数+原型让人感觉怪异;最好把构造函数和原型封装到一起;
+function Box(name,age){                            // 将所有信息封装到构造函数体内;
+        this.name = name;
+        this.age = age; 
+        // 当第一次调用构造函数时,run()方法不存在,然后执行初始化原型;
+        // 当第二次调用,就不会初始化,并且第二次创建新对象,原型也不会载初始化;
+        // 这样既得到了封装,又实现了原型方法共享,并且属性都保持独立;
+        if(typeof this.run != 'function'){            // 仅在第一次调用时初始化;
+            Box.prototype.run = function (){
+                return this.name+this.age+'运行中...';
+            };
+        }
+    };
+    var box = new Box('lee',10);
+    var zzz= new Box('zzz',20);
+    console.log(box.run(),zzz.run());
+// PS:使用动态原型模式,要注意一点,不可以再使用字面量的方式重写原型,因为会切断实例和新原型之间的联系;
+
+//Es6对面向对象的改进，class类来使用
+class ooo{
+    constructor(name,age){
+        this.name=name;
+        this.age=age;
+
+    }
+
+    xxx(){
+        console.log("我的名字："+this.name+"我都年龄"+this.age);
+    }
+}
+
+var a = new ooo("zzz","30");
+console.log(a);
+a.xxx();
+
+var b = new ooo("xxx","40");
+console.log(b);
+b.xxx();
+
+</script>
+</html>

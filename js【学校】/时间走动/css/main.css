@@ -1,0 +1,45 @@
+/*
+* @Author: Marte
+* @Date:   2018-05-02 16:05:30
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-05-02 18:22:04
+*/
+body,div,p,span{
+    margin:0;
+    padding:0;
+}
+#box{
+    width:150px;
+    height:150px;
+    background-color:#f56;
+    margin:30px auto;
+}
+#header{
+    width:150px;
+    height:30px;
+    text-align: center;
+    font-size: 25px;
+    background-color:#215863;
+    color: #fff;
+}
+.content{
+    width:150px;
+    height:110px;
+    text-align:center;
+}
+#day
+{
+    height:90px;
+    width:80px;
+    margin:0 auto;
+    font-size:80px;
+}
+#content1 p{
+    text-align:center;
+    font-weight: 600;
+}
+#nianyue{
+    color:#0a1775;
+    height:30px;
+    background-color:#b6a5a5;
+}
